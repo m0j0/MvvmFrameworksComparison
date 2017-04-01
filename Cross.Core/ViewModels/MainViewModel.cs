@@ -14,6 +14,7 @@ namespace Cross.ViewModels
 
         private bool _canOpenChildViewModel;
         private string _parameter;
+        private readonly MvxCommand _openChildViewModelCommand;
 
         #endregion
 
@@ -21,8 +22,8 @@ namespace Cross.ViewModels
 
         public MainViewModel()
         {
+            _openChildViewModelCommand = new MvxCommand(OpenChildViewModel, CanExecuteOpenChildViewModel);
             CanOpenChildViewModel = true;
-            OpenChildViewModelCommand = new MvxCommand(OpenChildViewModel, CanExecuteOpenChildViewModel);
         }
 
         #endregion
@@ -43,6 +44,7 @@ namespace Cross.ViewModels
 
                 _canOpenChildViewModel = value;
                 RaisePropertyChanged();
+                _openChildViewModelCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -65,7 +67,7 @@ namespace Cross.ViewModels
 
         #region Commands
 
-        public ICommand OpenChildViewModelCommand { get; }
+        public ICommand OpenChildViewModelCommand => _openChildViewModelCommand;
 
         private void OpenChildViewModel()
         {
