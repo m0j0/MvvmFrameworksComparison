@@ -10,7 +10,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.RowSpan="3"
+                    VerticalAlignment="Center" View.Visible="{Binding Path=IsBusy}">
+            <TextBlock Text="{Binding Path=BusyMessage}" HorizontalAlignment="Center" />
+            <ProgressBar IsIndeterminate="True" HorizontalAlignment="Stretch" Height="20" />
+        </StackPanel>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -21,5 +29,13 @@
             <TextBlock Grid.Column="0" Text="Passed parameter:" />
             <TextBox Grid.Column="1" Text="{Binding Parameter, Mode=TwoWay}" />
         </Grid>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Update parameter"
+                    Command="{Binding ApplyCommand}" />
+            <Button Content="Close"
+                    Command="{Binding CloseCommand}" />
+        </StackPanel>
     </Grid>
 </Window>

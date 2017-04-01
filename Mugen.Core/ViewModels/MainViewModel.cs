@@ -11,6 +11,7 @@ namespace Mugen.ViewModels
         #region Fields
 
         private bool _canOpenChildViewModel;
+        private string _parameter;
 
         #endregion
 
@@ -18,6 +19,7 @@ namespace Mugen.ViewModels
 
         public MainViewModel()
         {
+            CanOpenChildViewModel = true;
             OpenChildViewModelCommand =  new RelayCommand(OpenChildViewModel, CanExecuteOpenChildViewModel, this);
         }
 
@@ -42,7 +44,20 @@ namespace Mugen.ViewModels
             }
         }
 
-        public string Parameter { get; set; }
+        public string Parameter
+        {
+            get { return _parameter; }
+            set
+            {
+                if (value == _parameter)
+                {
+                    return;
+                }
+
+                _parameter = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -55,7 +70,12 @@ namespace Mugen.ViewModels
             using (var viewModel = GetViewModel<ChildViewModel>())
             {
                 viewModel.Parameter = Parameter;
-                await viewModel.ShowAsync();
+                if (!await viewModel.ShowAsync())
+                {
+                    return;
+                }
+
+                Parameter = viewModel.Parameter;
             }
         }
 

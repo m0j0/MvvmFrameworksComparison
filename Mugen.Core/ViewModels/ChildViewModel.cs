@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using MugenMvvmToolkit;
 using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.Interfaces.Presenters;
@@ -21,6 +22,7 @@ namespace Mugen.ViewModels
         {
             Should.NotBeNull(messagePresenter, nameof(messagePresenter));
             _messagePresenter = messagePresenter;
+            ApplyCommand = new RelayCommand(Apply);
         }
 
         #endregion
@@ -35,12 +37,25 @@ namespace Mugen.ViewModels
 
         #endregion
 
+        #region Commands
+
+        public ICommand ApplyCommand { get; }
+
+        private void Apply()
+        {
+            OperationResult = true;
+            CloseAsync();
+        }
+
+        #endregion
+
         #region Methods
 
         protected override async Task<bool> OnClosing(object parameter)
         {
             var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
                 MessageButton.YesNo);
+            await Task.Delay(2000).WithBusyIndicator(this, "Long running process emulation");
             return result == MessageResult.Yes;
         }
 
