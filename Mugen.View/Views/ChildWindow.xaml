@@ -1,0 +1,13 @@
+﻿<Window x:Class="Mugen.View.Views.ChildWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mugen.View.Views"
+        xmlns:viewModels="clr-namespace:Mugen.Core.ViewModels;assembly=Mugen.Core"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:ChildViewModel}"
+        Title="{Binding DisplayName}" Height="300" Width="300">
+    <Grid>
+        
+    </Grid>
+</Window>

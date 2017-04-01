@@ -1,12 +1,22 @@
-﻿<Window x:Class="Mugen.View.MainWindow"
+﻿<Window x:Class="Mugen.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mugen.View"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:viewModels="clr-namespace:Mugen.Core.ViewModels;assembly=Mugen.Core"
+        xmlns:viewModels1="clr-namespace:Mugen.ViewModels;assembly=Mugen.Core"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels1:MainViewModel}"
+        Title="{Binding DisplayName}" Height="350" Width="525">
     <Grid>
-        <TextBlock Text="{Binding DisplayName}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CheckBox Grid.Row="0" Content="Can open child window"
+                  IsChecked="{Binding CanOpenChildViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Grid.Row="1" Content="Open child window"
+                Command="{Binding OpenChildViewModelCommand}" />
     </Grid>
 </Window>

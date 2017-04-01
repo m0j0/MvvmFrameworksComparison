@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using Mugen.Core.ViewModels;
+﻿using System.Windows;
+using Mugen.ViewModels;
 using MugenMvvmToolkit;
 using MugenMvvmToolkit.WPF.Infrastructure;
 
-namespace Mugen.View
+namespace Mugen
 {
     public partial class App : Application
     {
