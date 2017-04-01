@@ -5,7 +5,8 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:local="clr-namespace:Cross.Views"
                   xmlns:views="clr-namespace:MvvmCross.Wpf.Views;assembly=MvvmCross.Wpf"
-                  mc:Ignorable="d"
+                  xmlns:viewModels="clr-namespace:Cross.ViewModels;assembly=Cross.Core"
+                  mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
                   d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>

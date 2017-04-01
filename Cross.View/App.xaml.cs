@@ -26,7 +26,9 @@ namespace Cross
         protected override void OnActivated(EventArgs e)
         {
             if (!_setupComplete)
+            {
                 DoSetup();
+            }
 
             base.OnActivated(e);
         }

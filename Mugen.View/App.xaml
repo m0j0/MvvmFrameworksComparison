@@ -2,15 +2,5 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Mugen.View">
-    <Application.Resources>
-        
-        <Style x:Key="BaseStyle" TargetType="FrameworkElement">
-            <Setter Property="Margin" Value="3" />
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseStyle}" />
-        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}" />
-        <Style TargetType="TextBox" BasedOn="{StaticResource BaseStyle}" />
-        <Style TargetType="CheckBox" BasedOn="{StaticResource BaseStyle}" />
-        
-    </Application.Resources>
+    <Application.Resources />
 </Application>
