@@ -69,7 +69,7 @@ namespace Mugen.ViewModels
         {
             using (var viewModel = GetViewModel<ChildViewModel>())
             {
-                viewModel.Parameter = Parameter;
+                viewModel.Initialize(Parameter);
                 if (!await viewModel.ShowAsync())
                 {
                     return;

@@ -8,11 +8,13 @@ using MugenMvvmToolkit.ViewModels;
 
 namespace Mugen.ViewModels
 {
-    public class ChildViewModel : CloseableViewModel, IHasDisplayName, IHasOperationResult
+    public class ChildViewModel : ValidatableViewModel, IHasDisplayName, IHasOperationResult
     {
         #region Fields
 
         private readonly IMessagePresenter _messagePresenter;
+        private string _parameter;
+        private string _originalParameter;
 
         #endregion
 
@@ -22,7 +24,7 @@ namespace Mugen.ViewModels
         {
             Should.NotBeNull(messagePresenter, nameof(messagePresenter));
             _messagePresenter = messagePresenter;
-            ApplyCommand = new RelayCommand(Apply);
+            ApplyCommand = new RelayCommand(Apply, CanApply, this);
         }
 
         #endregion
@@ -31,7 +33,21 @@ namespace Mugen.ViewModels
 
         public string DisplayName => "Child view model";
 
-        public string Parameter { get; set; }
+        public string Parameter
+        {
+            get { return _parameter; }
+            set
+            {
+                if (value == _parameter)
+                {
+                    return;
+                }
+
+                _parameter = value;
+                OnPropertyChanged();
+                Validate();
+            }
+        }
 
         public bool? OperationResult { get; private set; }
 
@@ -47,9 +63,30 @@ namespace Mugen.ViewModels
             CloseAsync();
         }
 
+        private bool CanApply()
+        {
+            return IsValid;
+        }
+
         #endregion
 
         #region Methods
+
+        public void Initialize(string parameter)
+        {
+            _originalParameter = parameter;
+            Parameter = parameter;
+            Validate();
+        }
+
+        private void Validate()
+        {
+            Validator.SetErrors(nameof(Parameter),
+                _originalParameter == Parameter ||
+                string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter)
+                    ? "Change parameter before update"
+                    : null);
+        }
 
         protected override async Task<bool> OnClosing(object parameter)
         {
