@@ -17,6 +17,7 @@ namespace Cross.ViewModels
         private bool _isBusy;
         private string _busyMessage;
         private string _parameterError;
+        private readonly MvxCommand _applyCommand;
 
         #endregion
 
@@ -26,7 +27,7 @@ namespace Cross.ViewModels
         {
             //Should.NotBeNull(messagePresenter, nameof(messagePresenter));
             //_messagePresenter = messagePresenter;
-            //ApplyCommand = new RelayCommand(Apply, CanApply, this);
+            _applyCommand = new MvxCommand(Apply, CanApply);
             CloseCommand = new MvxCommand(Close);
         }
 
@@ -86,30 +87,29 @@ namespace Cross.ViewModels
 
         #region Commands
 
-        public ICommand ApplyCommand { get; }
+        public ICommand ApplyCommand => _applyCommand;
 
-        //private void Apply()
-        //{
-        //    OperationResult = true;
-        //    CloseAsync();
-        //}
+        private void Apply()
+        {
+            ShowViewModel<MainViewModel>(new {parameter = Parameter});
+        }
 
-        //private bool CanApply()
-        //{
-        //    return IsValid;
-        //}
+        private bool CanApply()
+        {
+            return !HasErrors;
+        }
 
         public ICommand CloseCommand { get; }
 
         private void Close()
         {
-            Close(this);
+            ShowViewModel<MainViewModel>(new {parameter = _originalParameter});
         }
 
         #endregion
 
         #region Methods
-        
+
         public void Init(string parameter)
         {
             _originalParameter = parameter;
@@ -125,6 +125,7 @@ namespace Cross.ViewModels
                 ? "Change parameter before update"
                 : null;
 
+            _applyCommand.RaiseCanExecuteChanged();
             if (hasErrorBefore != HasErrors)
             {
                 ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Parameter)));
@@ -155,6 +156,8 @@ namespace Cross.ViewModels
             }
         }
 
+        #endregion
+
         #region Implementation of INotifyDataErrorInfo
 
         public IEnumerable GetErrors(string propertyName)
@@ -170,8 +173,6 @@ namespace Cross.ViewModels
         public bool HasErrors => !string.IsNullOrEmpty(_parameterError);
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        #endregion
 
         #endregion
     }

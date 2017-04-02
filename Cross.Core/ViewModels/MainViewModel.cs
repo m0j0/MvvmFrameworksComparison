@@ -75,5 +75,14 @@ namespace Cross.ViewModels
         }
 
         #endregion
+
+        #region Methods
+        
+        public void Init(string parameter)
+        {
+            Parameter = parameter;
+        }
+
+        #endregion
     }
 }
