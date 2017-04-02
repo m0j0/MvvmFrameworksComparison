@@ -55,8 +55,13 @@ namespace Mugen.ViewModels
         {
             var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
                 MessageButton.YesNo);
-            await Task.Delay(2000).WithBusyIndicator(this, "Long running process emulation");
+            await DoWorkAsync();
             return result == MessageResult.Yes;
+        }
+
+        private Task DoWorkAsync()
+        {
+            return Task.Delay(2000).WithBusyIndicator(this, "Long running process emulation");
         }
 
         #endregion
