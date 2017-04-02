@@ -2,13 +2,15 @@
 using System.Windows.Input;
 using MugenMvvmToolkit;
 using MugenMvvmToolkit.Interfaces.Models;
+using MugenMvvmToolkit.Interfaces.Navigation;
 using MugenMvvmToolkit.Interfaces.Presenters;
+using MugenMvvmToolkit.Interfaces.ViewModels;
 using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
 
 namespace Mugen.ViewModels
 {
-    public class ChildViewModel : ValidatableViewModel, IHasDisplayName, IHasOperationResult
+    public class ChildViewModel : ValidatableViewModel, IHasDisplayName, IHasOperationResult, INavigableViewModel
     {
         #region Fields
 
@@ -100,6 +102,26 @@ namespace Mugen.ViewModels
         {
             return Task.Delay(2000).WithBusyIndicator(this, "Long running process emulation");
         }
+
+        #region Implementation of INavigableViewModel
+
+        void INavigableViewModel.OnNavigatedTo(INavigationContext context)
+        {
+            this.TraceNavigation(context, _messagePresenter);
+        }
+
+        Task<bool> INavigableViewModel.OnNavigatingFrom(INavigationContext context)
+        {
+            this.TraceNavigation(context, _messagePresenter);
+            return Empty.TrueTask;
+        }
+
+        void INavigableViewModel.OnNavigatedFrom(INavigationContext context)
+        {
+            this.TraceNavigation(context, _messagePresenter);
+        }
+
+        #endregion
 
         #endregion
     }
