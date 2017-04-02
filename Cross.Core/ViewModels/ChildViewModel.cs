@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 
 namespace Cross.ViewModels
 {
-    public class ChildViewModel : MvxViewModel
+    public class ChildViewModel : MvxViewModel, INotifyDataErrorInfo
     {
         #region Fields
 
@@ -13,6 +16,7 @@ namespace Cross.ViewModels
         private string _originalParameter;
         private bool _isBusy;
         private string _busyMessage;
+        private string _parameterError;
 
         #endregion
 
@@ -23,6 +27,7 @@ namespace Cross.ViewModels
             //Should.NotBeNull(messagePresenter, nameof(messagePresenter));
             //_messagePresenter = messagePresenter;
             //ApplyCommand = new RelayCommand(Apply, CanApply, this);
+            CloseCommand = new MvxCommand(Close);
         }
 
         #endregion
@@ -98,6 +103,7 @@ namespace Cross.ViewModels
 
         private void Close()
         {
+            Close(this);
         }
 
         #endregion
@@ -113,11 +119,16 @@ namespace Cross.ViewModels
 
         private void Validate()
         {
-            //Validator.SetErrors(nameof(Parameter),
-            //    _originalParameter == Parameter ||
-            //    string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter)
-            //        ? "Change parameter before update"
-            //        : null);
+            bool hasErrorBefore = HasErrors;
+            _parameterError = _originalParameter == Parameter ||
+                              string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter)
+                ? "Change parameter before update"
+                : null;
+
+            if (hasErrorBefore != HasErrors)
+            {
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Parameter)));
+            }
         }
 
         //protected override async Task<bool> OnClosing(object parameter)
@@ -143,6 +154,24 @@ namespace Cross.ViewModels
                 BusyMessage = null;
             }
         }
+
+        #region Implementation of INotifyDataErrorInfo
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            if (propertyName != nameof(Parameter))
+            {
+                return null;
+            }
+
+            return _parameterError;
+        }
+
+        public bool HasErrors => !string.IsNullOrEmpty(_parameterError);
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        #endregion
 
         #endregion
     }
