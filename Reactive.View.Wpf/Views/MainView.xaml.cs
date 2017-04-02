@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 using Reactive.Core.ViewModels;
 
-namespace Reactive
+namespace Reactive.Views
 {
-    public partial class MainWindow : Window
+    public partial class MainView : Window
     {
-        public MainWindow()
+        public MainView()
         {
             InitializeComponent();
             DataContext = new MainViewModel();
