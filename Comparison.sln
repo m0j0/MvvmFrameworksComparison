@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.Core", "Mugen.Core\Mugen.Core.csproj", "{02ED43AD-4F99-4D01-A913-51644E70F1DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.View", "Mugen.View\Mugen.View.csproj", "{FE1FF5C3-9D6D-4635-81D6-35CBA7A8AFF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.View.Wpf", "Mugen.View.Wpf\Mugen.View.Wpf.csproj", "{FE1FF5C3-9D6D-4635-81D6-35CBA7A8AFF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross.Core", "Cross.Core\Cross.Core.csproj", "{B34A49EB-F0C5-49F4-A951-CAA5B344A796}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross.View", "Cross.View\Cross.View.csproj", "{D96FD043-87A6-4AF1-BF83-10608FD196AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross.View.Wpf", "Cross.View.Wpf\Cross.View.Wpf.csproj", "{D96FD043-87A6-4AF1-BF83-10608FD196AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reactive.Core", "Reactive.Core\Reactive.Core.csproj", "{EC3623D1-CDEC-4CCD-AAB2-0377B513705C}"
 EndProject
