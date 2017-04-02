@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using MugenMvvmToolkit;
 using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.Interfaces.Navigation;
 using MugenMvvmToolkit.Interfaces.Presenters;
@@ -13,12 +15,13 @@ namespace Mugen
         public static void TraceNavigation(this IViewModel viewModel, INavigationContext ctx,
             IMessagePresenter messagePresenter, [CallerMemberName] string method = "")
         {
-            messagePresenter.ShowAsync(
+            //messagePresenter.ShowAsync(
+            Debug.WriteLine(
                 $"Source “{GetName(viewModel)}”, method “{method}”, from “{GetName(ctx.ViewModelFrom)}” to “{GetName(ctx.ViewModelTo)}”, mode “{ctx.NavigationMode}”",
                 "Navigation trace");
         }
 
-        public static string GetName(this IViewModel viewModel)
+        private static string GetName(IViewModel viewModel)
         {
             return (viewModel as IHasDisplayName)?.DisplayName ?? viewModel?.GetType().Name ?? "(null)";
         }
