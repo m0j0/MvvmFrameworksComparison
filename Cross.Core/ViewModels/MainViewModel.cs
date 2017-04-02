@@ -71,7 +71,7 @@ namespace Cross.ViewModels
 
         private void OpenChildViewModel()
         {
-            ShowViewModel<ChildViewModel>();
+            ShowViewModel<ChildViewModel>(new {parameter = Parameter});
         }
 
         private bool CanExecuteOpenChildViewModel()

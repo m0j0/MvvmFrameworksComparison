@@ -96,11 +96,15 @@ namespace Cross.ViewModels
 
         public ICommand CloseCommand { get; }
 
+        private void Close()
+        {
+        }
+
         #endregion
 
         #region Methods
-
-        public void Initialize(string parameter)
+        
+        public void Init(string parameter)
         {
             _originalParameter = parameter;
             Parameter = parameter;
