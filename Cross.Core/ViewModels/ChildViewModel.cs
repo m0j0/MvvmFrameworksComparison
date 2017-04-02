@@ -3,6 +3,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Cross.Services;
 using MvvmCross.Core.ViewModels;
 
 namespace Cross.ViewModels
@@ -11,7 +12,7 @@ namespace Cross.ViewModels
     {
         #region Fields
 
-        //private readonly IMessagePresenter _messagePresenter;
+        private readonly IMessagePresenter _messagePresenter;
         private string _parameter;
         private string _originalParameter;
         private bool _isBusy;
@@ -23,11 +24,11 @@ namespace Cross.ViewModels
 
         #region Constructors
 
-        public ChildViewModel( /*IMessagePresenter messagePresenter*/)
+        public ChildViewModel(IMessagePresenter messagePresenter)
         {
-            //Should.NotBeNull(messagePresenter, nameof(messagePresenter));
-            //_messagePresenter = messagePresenter;
-            _applyCommand = new MvxCommand(Apply, CanApply);
+            if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
+            _messagePresenter = messagePresenter;
+            _applyCommand = new MvxCommand(ApplyAsync, CanApply);
             CloseCommand = new MvxCommand(Close);
         }
 
@@ -89,9 +90,14 @@ namespace Cross.ViewModels
 
         public ICommand ApplyCommand => _applyCommand;
 
-        private void Apply()
+        private async void ApplyAsync()
         {
-            ShowViewModel<MainViewModel>(new {parameter = Parameter});
+            if (!await TryCloseAsync())
+            {
+                return;
+            }
+
+            ShowViewModel<MainViewModel>(new { parameter = Parameter });
         }
 
         private bool CanApply()
@@ -101,8 +107,13 @@ namespace Cross.ViewModels
 
         public ICommand CloseCommand { get; }
 
-        private void Close()
+        private async void Close()
         {
+            if (!await TryCloseAsync())
+            {
+                return;
+            }
+
             ShowViewModel<MainViewModel>(new {parameter = _originalParameter});
         }
 
@@ -132,22 +143,21 @@ namespace Cross.ViewModels
             }
         }
 
-        //protected override async Task<bool> OnClosing(object parameter)
-        //{
-        //    var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
-        //        MessageButton.YesNo);
-        //    await DoWorkAsync();
-        //    return result == MessageResult.Yes;
-        //}
+        private async Task<bool> TryCloseAsync()
+        {
+            var result = _messagePresenter.ShowQuestion("Are you sure you want to close window?");
+            await DoWorkAsync();
+            return result;
+        }
 
-        private Task DoWorkAsync()
+        private async Task DoWorkAsync()
         {
             try
             {
                 IsBusy = true;
                 BusyMessage = "Long running process emulation";
 
-                return Task.Delay(2000);
+                await Task.Delay(2000);
             }
             finally
             {
