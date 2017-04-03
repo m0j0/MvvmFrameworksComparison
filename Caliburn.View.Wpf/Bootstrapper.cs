@@ -22,7 +22,9 @@ namespace Caliburn
 
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IWindowManagerPortable, WindowManagerPortable>();
+            _container.Singleton<IMessagePresenter, MessagePresenter>();
             _container.PerRequest<MainViewModel>();
+            _container.PerRequest<ChildViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

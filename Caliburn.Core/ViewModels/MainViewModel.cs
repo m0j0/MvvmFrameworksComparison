@@ -65,7 +65,15 @@ namespace Caliburn.ViewModels
 
         public void OpenChildViewModel()
         {
-            _windowManager.ShowDialog(new ChildViewModel());
+            var childViewModel = IoC.Get<ChildViewModel>();
+            childViewModel.Initialize(Parameter);
+
+            if (!_windowManager.ShowDialog(childViewModel).GetValueOrDefault())
+            {
+                return;
+            }
+
+            Parameter = childViewModel.Parameter;
         }
 
         #endregion
