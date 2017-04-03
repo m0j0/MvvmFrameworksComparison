@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using Caliburn.Managers;
 using Caliburn.Micro;
 using Caliburn.ViewModels;
 
@@ -20,6 +21,7 @@ namespace Caliburn
             _container = new SimpleContainer();
 
             _container.Singleton<IWindowManager, WindowManager>();
+            _container.Singleton<IWindowManagerPortable, WindowManagerPortable>();
             _container.PerRequest<MainViewModel>();
         }
 
