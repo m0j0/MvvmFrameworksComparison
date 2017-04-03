@@ -2,7 +2,7 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using Caliburn.Interfaces;
 using Caliburn.Managers;
 using Caliburn.Micro;
 
@@ -27,8 +27,6 @@ namespace Caliburn.ViewModels
         {
             if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
             _messagePresenter = messagePresenter;
-            //_applyCommand = new MvxCommand(ApplyAsync, CanApply);
-            //CloseCommand = new MvxCommand(Close);
         }
 
         #endregion
@@ -87,27 +85,16 @@ namespace Caliburn.ViewModels
 
         #region Commands
 
-        private void Apply()
+        public void Apply()
         {
-            //if (!await TryCloseAsync())
-            //{
-            //    return;
-            //}
-
-            //ShowViewModel<MainViewModel>(new { parameter = Parameter });
+            ((ICloseableView)GetView()).Close(true);
         }
 
-        private bool CanApply => !HasErrors;
+        public bool CanApply => !HasErrors;
 
-        private void Close()
+        public void Close()
         {
-            //if (!await TryCloseAsync())
-            //{
-            //    return;
-            //}
-
-            TryClose();
-            //ShowViewModel<MainViewModel>(new { parameter = _originalParameter });
+            ((ICloseableView)GetView()).Close(false);
         }
 
         #endregion
@@ -128,21 +115,21 @@ namespace Caliburn.ViewModels
                               string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter)
                 ? "Change parameter before update"
                 : null;
-
-            //_applyCommand.RaiseCanExecuteChanged();
+            
+            NotifyOfPropertyChange(nameof(CanApply));
             if (hasErrorBefore != HasErrors)
             {
                 ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Parameter)));
             }
         }
 
-        private async Task<bool> TryCloseAsync()
+        public override void CanClose(Action<bool> callback)
         {
-            var result = true;//_messagePresenter.ShowQuestion("Are you sure you want to close window?");
-            await DoWorkAsync();
-            return result;
+            var result = _messagePresenter.ShowQuestion("Are you sure you want to close window?");
+            // await DoWorkAsync(); can't be done ;(
+            callback(result);
         }
-
+        
         private async Task DoWorkAsync()
         {
             try
