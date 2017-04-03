@@ -1,5 +1,5 @@
 # MVVM frameworks comparison
-Comparison of popular MVVM frameworks by **out-of-the-box features**:
+Comparison of popular MVVM frameworks by **out-of-the-box WPF features**:
 
 - [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
 - [Catel](https://github.com/catel/catel)
@@ -11,6 +11,7 @@ Comparison of popular MVVM frameworks by **out-of-the-box features**:
 
 Feature | Caliburn.Micro | Catel | Mugen MVVM Toolkit | MVVM Light Toolkit | MvvmCross | Prism | ReactiveUI
 --- | --- | --- | --- | --- | --- | --- | ---
+Core portable project | Yes | ? | Yes | ? | Yes | ? | ?
 Dialog navigation | Yes | ? | Yes | ? | No | ? | ?
 Passing parameters to navigable VM | Any types | ? | Any types | ? | Only primitives types | ? | ?
 Result of navigation operation | No | ? | Yes | ? | No | ? | ?

@@ -96,7 +96,7 @@ namespace Caliburn.ViewModels
         public void Close()
         {
             // ((IDeactivate)this).Deactivate(true); - CanClose isn't called in that case
-            ((ICloseableView)GetView()).Close(true);
+            ((ICloseableView)GetView()).Close(false);
         }
 
         #endregion
