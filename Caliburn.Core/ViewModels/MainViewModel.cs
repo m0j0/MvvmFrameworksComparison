@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Caliburn.Managers;
 using Caliburn.Micro;
 
@@ -74,6 +75,30 @@ namespace Caliburn.ViewModels
             }
 
             Parameter = childViewModel.Parameter;
+        }
+
+        #endregion
+
+        #region Methods
+
+        protected override void OnActivate()
+        {
+            Debug.WriteLine($"{DisplayName} activated");
+        }
+
+        protected override void OnInitialize()
+        {
+            Debug.WriteLine($"{DisplayName} initialized");
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            Debug.WriteLine($"{DisplayName} deactiveted");
+        }
+
+        protected override void OnViewLoaded(object view)
+        {
+            Debug.WriteLine($"{DisplayName} view loaded");
         }
 
         #endregion

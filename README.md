@@ -1,5 +1,5 @@
 # MVVM frameworks comparison
-Comparison of popular MVVM frameworks by out-of-the-box features:
+Comparison of popular MVVM frameworks by **out-of-the-box features**:
 
 - [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
 - [Catel](https://github.com/catel/catel)
@@ -11,11 +11,12 @@ Comparison of popular MVVM frameworks by out-of-the-box features:
 
 Feature | Caliburn.Micro | Catel | Mugen MVVM Toolkit | MVVM Light Toolkit | MvvmCross | Prism | ReactiveUI
 --- | --- | --- | --- | --- | --- | --- | ---
-Dialog navigation | ? | ? | Yes | ? | No | ? | ?
-Passing parameters to navigable VM |  ? | ? | Any types | ? | Only primitives types | ? | ?
-Result of navigation operation | ? | ? | Yes | ? | No | ? | ?
-VM closing handling | ? | ? | Yes | ? | No | ? | ?
-Update commands on property changed | ? | ? | Yes | ? | No | ? | ?
-Property validation | ? | ? | Yes | ? | No | ? | ?
-Busy indication | ? | ? | Yes | ? | No | ? | ?
-DI support | ? | ? | Yes | ? | Yes | ? | ?
+Dialog navigation | Yes | ? | Yes | ? | No | ? | ?
+Passing parameters to navigable VM | Any types | ? | Any types | ? | Only primitives types | ? | ?
+Result of navigation operation | No | ? | Yes | ? | No | ? | ?
+VM closing handling | Only synchronous operation | ? | Yes | ? | No | ? | ?
+Update commands on property changed | Yes | ? | Yes | ? | No | ? | ?
+Property validation | No | ? | Yes | ? | No | ? | ?
+Busy indication | No | ? | Yes | ? | No | ? | ?
+DI support | Yes | ? | Yes | ? | Yes | ? | ?
+Handling VM lifecycle | Yes | ? | Yes | ? | ? | ? | ?

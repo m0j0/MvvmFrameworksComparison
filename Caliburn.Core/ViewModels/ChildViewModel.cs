@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Caliburn.Interfaces;
 using Caliburn.Managers;
@@ -94,7 +95,8 @@ namespace Caliburn.ViewModels
 
         public void Close()
         {
-            ((ICloseableView)GetView()).Close(false);
+            // ((IDeactivate)this).Deactivate(true); - CanClose isn't called in that case
+            ((ICloseableView)GetView()).Close(true);
         }
 
         #endregion
@@ -126,7 +128,7 @@ namespace Caliburn.ViewModels
         public override void CanClose(Action<bool> callback)
         {
             var result = _messagePresenter.ShowQuestion("Are you sure you want to close window?");
-            // await DoWorkAsync(); can't be done ;(
+            // await DoWorkAsync(); can't be executed ;(
             callback(result);
         }
         
@@ -144,6 +146,26 @@ namespace Caliburn.ViewModels
                 IsBusy = false;
                 BusyMessage = null;
             }
+        }
+
+        protected override void OnActivate()
+        {
+            Debug.WriteLine($"{DisplayName} activated");
+        }
+
+        protected override void OnInitialize()
+        {
+            Debug.WriteLine($"{DisplayName} initialized");
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            Debug.WriteLine($"{DisplayName} deactiveted");
+        }
+
+        protected override void OnViewLoaded(object view)
+        {
+            Debug.WriteLine($"{DisplayName} view loaded");
         }
 
         #endregion

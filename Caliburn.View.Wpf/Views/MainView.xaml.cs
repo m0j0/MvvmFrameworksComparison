@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Caliburn.Interfaces;
 
 namespace Caliburn.Views
 {
