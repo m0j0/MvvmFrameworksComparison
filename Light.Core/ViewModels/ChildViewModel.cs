@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Light.Services;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Light.ViewModels
 {
@@ -93,12 +95,9 @@ namespace Light.ViewModels
 
         private void Apply()
         {
-            //if (!await TryCloseAsync())
-            //{
-            //    return;
-            //}
-
-            //ShowViewModel<MainViewModel>(new { parameter = Parameter });
+            var mainViewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
+            mainViewModel.Parameter = Parameter;
+            Messenger.Default.Send(new NotificationMessage("CloseChildViewModel"));
         }
 
         private bool CanApply()
@@ -108,14 +107,9 @@ namespace Light.ViewModels
 
         public ICommand CloseCommand { get; }
 
-        private async void Close()
+        private void Close()
         {
-            //if (!await TryCloseAsync())
-            //{
-            //    return;
-            //}
-
-            //ShowViewModel<MainViewModel>(new { parameter = _originalParameter });
+            Messenger.Default.Send(new NotificationMessage("CloseChildViewModel"));
         }
 
         #endregion
@@ -166,14 +160,6 @@ namespace Light.ViewModels
                 BusyMessage = null;
             }
         }
-
-        //protected override async Task<bool> OnClosing(object parameter)
-        //{
-        //    var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
-        //        MessageButton.YesNo);
-        //    await DoWorkAsync();
-        //    return result == MessageResult.Yes;
-        //}
 
         #endregion
 
