@@ -28,7 +28,7 @@ namespace Cross.ViewModels
         {
             if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
             _messagePresenter = messagePresenter;
-            _applyCommand = new MvxCommand(ApplyAsync, CanApply);
+            _applyCommand = new MvxCommand(Apply, CanApply);
             CloseCommand = new MvxCommand(Close);
         }
 
@@ -90,7 +90,7 @@ namespace Cross.ViewModels
 
         public ICommand ApplyCommand => _applyCommand;
 
-        private async void ApplyAsync()
+        private async void Apply()
         {
             if (!await TryCloseAsync())
             {

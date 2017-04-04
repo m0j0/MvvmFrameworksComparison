@@ -29,7 +29,7 @@ namespace Light.ViewModels
         {
             if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
             _messagePresenter = messagePresenter;
-            _applyCommand = new RelayCommand(ApplyAsync, CanApply);
+            _applyCommand = new RelayCommand(Apply, CanApply);
             CloseCommand = new RelayCommand(Close);
         }
 
@@ -91,7 +91,7 @@ namespace Light.ViewModels
 
         public ICommand ApplyCommand => _applyCommand;
 
-        private async void ApplyAsync()
+        private void Apply()
         {
             //if (!await TryCloseAsync())
             //{
