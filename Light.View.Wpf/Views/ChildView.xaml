@@ -4,9 +4,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Light.Views"
-        mc:Ignorable="d"
-        Title="ChildView" Height="300" Width="300">
+        mc:Ignorable="d" DataContext="{Binding Source={StaticResource Locator}, Path=ChildViewModel}"
+        Title="{Binding DisplayName}" Height="300" Width="300">
     <Grid>
-        
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </Grid.Resources>
+
+        <StackPanel VerticalAlignment="Center"
+                    Visibility="{Binding Path=IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{Binding Path=BusyMessage}" HorizontalAlignment="Center" />
+            <ProgressBar IsIndeterminate="True" HorizontalAlignment="Stretch" Height="20" />
+        </StackPanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Passed parameter:" />
+                <TextBox Grid.Column="1"
+                         Text="{Binding Parameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+            </Grid>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Update parameter"
+                        Command="{Binding ApplyCommand}" />
+                <Button Content="Close"
+                        Command="{Binding CloseCommand}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

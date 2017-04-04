@@ -1,7 +1,8 @@
 using GalaSoft.MvvmLight.Ioc;
+using Light.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 
-namespace Light.ViewModels
+namespace Light
 {
     public class ViewModelLocator
     {
@@ -13,6 +14,8 @@ namespace Light.ViewModels
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+
+        public ChildViewModel ChildViewModel => ServiceLocator.Current.GetInstance<ChildViewModel>();
 
         public static void Cleanup()
         {
