@@ -10,6 +10,7 @@ namespace Light.ViewModels
         
         private bool _canOpenChildViewModel;
         private string _parameter;
+        private readonly RelayCommand _openChildViewModelCommand;
 
         #endregion
 
@@ -17,8 +18,8 @@ namespace Light.ViewModels
 
         public MainViewModel()
         {
+            _openChildViewModelCommand = new RelayCommand(OpenChildViewModel, CanExecuteOpenChildViewModel);
             CanOpenChildViewModel = true;
-            OpenChildViewModelCommand = new RelayCommand(OpenChildViewModel, CanExecuteOpenChildViewModel);
         }
 
         #endregion
@@ -39,6 +40,7 @@ namespace Light.ViewModels
 
                 _canOpenChildViewModel = value;
                 RaisePropertyChanged();
+                _openChildViewModelCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -61,7 +63,7 @@ namespace Light.ViewModels
 
         #region Commands
 
-        public ICommand OpenChildViewModelCommand { get; }
+        public ICommand OpenChildViewModelCommand => _openChildViewModelCommand;
 
         private void OpenChildViewModel()
         {

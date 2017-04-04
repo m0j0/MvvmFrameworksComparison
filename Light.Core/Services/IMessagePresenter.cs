@@ -2,5 +2,6 @@
 {
     public interface IMessagePresenter
     {
+        bool ShowQuestion(string text);
     }
 }

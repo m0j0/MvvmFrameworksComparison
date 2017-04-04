@@ -166,14 +166,6 @@ namespace Cross.ViewModels
             }
         }
 
-        //protected override async Task<bool> OnClosing(object parameter)
-        //{
-        //    var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
-        //        MessageButton.YesNo);
-        //    await DoWorkAsync();
-        //    return result == MessageResult.Yes;
-        //}
-
         #endregion
 
         #region Implementation of INotifyDataErrorInfo
