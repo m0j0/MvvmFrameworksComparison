@@ -144,10 +144,10 @@ namespace Light.ViewModels
             }
         }
 
-        private async Task<bool> TryCloseAsync()
+        public async Task<bool> OnClosingAsync()
         {
             var result = _messagePresenter.ShowQuestion("Are you sure you want to close window?");
-            await DoWorkAsync();
+            // await DoWorkAsync(); can't be executed ;(
             return result;
         }
 

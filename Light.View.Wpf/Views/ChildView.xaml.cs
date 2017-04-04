@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
+using Light.ViewModels;
 
 namespace Light.Views
 {
@@ -7,6 +9,12 @@ namespace Light.Views
         public ChildView()
         {
             InitializeComponent();
+            Closing += OnClosing;
+        }
+
+        private async void OnClosing(object sender, CancelEventArgs cancelEventArgs)
+        {
+            cancelEventArgs.Cancel = !await ((ChildViewModel) DataContext).OnClosingAsync();
         }
     }
 }
