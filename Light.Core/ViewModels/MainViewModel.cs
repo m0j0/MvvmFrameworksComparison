@@ -1,6 +1,8 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Light.ViewModels
 {
@@ -67,17 +69,9 @@ namespace Light.ViewModels
 
         private void OpenChildViewModel()
         {
-            //using (var viewModel = GetViewModel<ChildViewModel>())
-            //{
-            //    viewModel.Initialize(Parameter);
-
-            //    if (!await viewModel.ShowAsync())
-            //    {
-            //        return;
-            //    }
-
-            //    Parameter = viewModel.Parameter;
-            //}
+            var childViewModel = ServiceLocator.Current.GetInstance<ChildViewModel>();
+            childViewModel.Initialize(Parameter);
+            Messenger.Default.Send(new NotificationMessage(nameof(ChildViewModel)));
         }
 
         private bool CanExecuteOpenChildViewModel()
