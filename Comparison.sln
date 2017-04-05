@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Light.Core", "Light.Core\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Light.View.Wpf", "Light.View.Wpf\Light.View.Wpf.csproj", "{38976F9C-01DA-4DF9-B22A-CF0A0475C61C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.PortableCore", "Prism.PortableCore\Prism.PortableCore.csproj", "{74ED450F-8297-4F59-9F89-76CA6036FE7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.View.Wpf", "Prism.View.Wpf\Prism.View.Wpf.csproj", "{29108663-7CB2-456A-ABC0-281C193D042D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{38976F9C-01DA-4DF9-B22A-CF0A0475C61C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38976F9C-01DA-4DF9-B22A-CF0A0475C61C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38976F9C-01DA-4DF9-B22A-CF0A0475C61C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74ED450F-8297-4F59-9F89-76CA6036FE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74ED450F-8297-4F59-9F89-76CA6036FE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74ED450F-8297-4F59-9F89-76CA6036FE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74ED450F-8297-4F59-9F89-76CA6036FE7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29108663-7CB2-456A-ABC0-281C193D042D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29108663-7CB2-456A-ABC0-281C193D042D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29108663-7CB2-456A-ABC0-281C193D042D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29108663-7CB2-456A-ABC0-281C193D042D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
