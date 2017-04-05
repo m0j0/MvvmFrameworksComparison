@@ -10,6 +10,24 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding DisplayName}" Height="300" Width="300">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CheckBox Grid.Row="0" Content="Can open child window"
+                  IsChecked="{Binding CanOpenChildViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Parameter to child view model:" />
+            <TextBox Grid.Column="1" Text="{Binding Parameter, Mode=TwoWay}" />
+        </Grid>
+        <Button Grid.Row="2" Content="Open child window"
+                Command="{Binding OpenChildViewModelCommand}" />
     </Grid>
 </Window>
