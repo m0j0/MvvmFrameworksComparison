@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.PortableCore", "Prism
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.View.Wpf", "Prism.View.Wpf\Prism.View.Wpf.csproj", "{29108663-7CB2-456A-ABC0-281C193D042D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catel.PortableCore", "Catel.PortableCore\Catel.PortableCore.csproj", "{4C660AD8-446D-4BC0-B55C-CA921470B139}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catel.View.Wpf", "Catel.View.Wpf\Catel.View.Wpf.csproj", "{A3EE4B0E-7254-45E7-8939-5D404D3B32B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,14 @@ Global
 		{29108663-7CB2-456A-ABC0-281C193D042D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29108663-7CB2-456A-ABC0-281C193D042D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29108663-7CB2-456A-ABC0-281C193D042D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C660AD8-446D-4BC0-B55C-CA921470B139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C660AD8-446D-4BC0-B55C-CA921470B139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C660AD8-446D-4BC0-B55C-CA921470B139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C660AD8-446D-4BC0-B55C-CA921470B139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3EE4B0E-7254-45E7-8939-5D404D3B32B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3EE4B0E-7254-45E7-8939-5D404D3B32B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3EE4B0E-7254-45E7-8939-5D404D3B32B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3EE4B0E-7254-45E7-8939-5D404D3B32B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
