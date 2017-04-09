@@ -1,5 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using Catel.IoC;
 using Catel.MVVM;
+using Catel.Services;
 
 namespace Catel.ViewModels
 {
@@ -7,6 +10,8 @@ namespace Catel.ViewModels
     {
         #region Fields
         
+        private readonly IUIVisualizerService _uiVisualizerService;
+        private readonly ITypeFactory _typeFactory;
         private bool _canOpenChildViewModel;
         private string _parameter;
 
@@ -14,8 +19,12 @@ namespace Catel.ViewModels
 
         #region Constructors
 
-        public MainViewModel()
+        public MainViewModel(IUIVisualizerService uiVisualizerService, ITypeFactory typeFactory)
         {
+            if (uiVisualizerService == null) throw new ArgumentNullException(nameof(uiVisualizerService));
+            if (typeFactory == null) throw new ArgumentNullException(nameof(typeFactory));
+            _uiVisualizerService = uiVisualizerService;
+            _typeFactory = typeFactory;
             OpenChildViewModelCommand = new Command(OpenChildViewModel, CanExecuteOpenChildViewModel);
             CanOpenChildViewModel = true;
         }
@@ -64,17 +73,15 @@ namespace Catel.ViewModels
 
         private void OpenChildViewModel()
         {
-            //using (var viewModel = GetViewModel<ChildViewModel>())
-            //{
-            //    viewModel.Initialize(Parameter);
+            var vm = _typeFactory.CreateInstance<ChildViewModel>();
+            vm.Initialize(Parameter);
 
-            //    if (!await viewModel.ShowAsync())
-            //    {
-            //        return;
-            //    }
+            if (!_uiVisualizerService.ShowDialog(vm).GetValueOrDefault())
+            {
+                return;
+            }
 
-            //    Parameter = viewModel.Parameter;
-            //}
+            Parameter = vm.Parameter;
         }
 
         private bool CanExecuteOpenChildViewModel()

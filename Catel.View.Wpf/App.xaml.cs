@@ -15,10 +15,7 @@ namespace Catel
             serviceLocator.RegisterType<IViewLocator, ViewLocator>();
             var viewLocator = serviceLocator.ResolveType<IViewLocator>();
             viewLocator.Register(typeof(MainViewModel), typeof(MainView));
-
-            //serviceLocator.RegisterType<IViewModelLocator, ViewModelLocator>();
-            //var viewModelLocator = serviceLocator.ResolveType<IViewModelLocator>();
-            //viewModelLocator.NamingConventions.Add("Catel.ViewModels.[VW]ViewModel");
+            viewLocator.Register(typeof(ChildViewModel), typeof(ChildView));
 
             new Bootstrapper().Run(true);
         }
