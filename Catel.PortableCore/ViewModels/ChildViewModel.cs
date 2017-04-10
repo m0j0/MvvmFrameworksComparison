@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Catel.Data;
@@ -29,6 +30,13 @@ namespace Catel.ViewModels
             _pleaseWaitService = pleaseWaitService;
             ApplyCommand = new Command(Apply, CanApply);
             CloseCommand = new Command(CloseCmd);
+
+            CanceledAsync += async (sender, args) => Debug.WriteLine($"{Title} canceled");
+            CancelingAsync += async (sender, args) => Debug.WriteLine($"{Title} canceling");
+            ClosedAsync += async (sender, args) => Debug.WriteLine($"{Title} closed");
+            ClosingAsync += async (sender, args) => Debug.WriteLine($"{Title} closing");
+            InitializedAsync += async (sender, args) => Debug.WriteLine($"{Title} initialized");
+            NavigationCompleted += async (sender, args) => Debug.WriteLine($"{Title} navigation");
         }
 
         #endregion
@@ -96,8 +104,7 @@ namespace Catel.ViewModels
 
         protected override async Task OnClosingAsync()
         {
-            await _messageService.ShowAsync("Are you sure you want to close window?", "Question",
-                MessageButton.YesNo); // need to add cancelation of closing operation
+            await _messageService.ShowAsync("Are you sure you want to close window?", "Question", MessageButton.YesNo); // need to add cancelation of closing operation
             _pleaseWaitService.Show(() => Task.Delay(2000), "Long running process emulation"); // need to add method ShowAsync
         }
         

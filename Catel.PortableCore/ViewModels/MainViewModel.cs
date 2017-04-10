@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Catel.IoC;
 using Catel.MVVM;
@@ -27,6 +28,13 @@ namespace Catel.ViewModels
             _typeFactory = typeFactory;
             OpenChildViewModelCommand = new Command(OpenChildViewModel, CanExecuteOpenChildViewModel);
             CanOpenChildViewModel = true;
+
+            CanceledAsync += async (sender, args)  => Debug.WriteLine($"{Title} canceled");
+            CancelingAsync += async (sender, args) => Debug.WriteLine($"{Title} canceling");
+            ClosedAsync += async (sender, args) => Debug.WriteLine($"{Title} closed");
+            ClosingAsync += async (sender, args) => Debug.WriteLine($"{Title} closing");
+            InitializedAsync += async (sender, args) => Debug.WriteLine($"{Title} initialized");
+            NavigationCompleted += async (sender, args) => Debug.WriteLine($"{Title} navigation");
         }
 
         #endregion
@@ -71,12 +79,12 @@ namespace Catel.ViewModels
 
         public ICommand OpenChildViewModelCommand { get; }
 
-        private void OpenChildViewModel()
+        private async void OpenChildViewModel()
         {
             var vm = _typeFactory.CreateInstance<ChildViewModel>();
             vm.Initialize(Parameter);
 
-            if (!_uiVisualizerService.ShowDialog(vm).GetValueOrDefault())
+            if (!(await _uiVisualizerService.ShowDialogAsync(vm)).GetValueOrDefault())
             {
                 return;
             }
