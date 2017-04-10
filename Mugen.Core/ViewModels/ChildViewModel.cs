@@ -92,10 +92,13 @@ namespace Mugen.ViewModels
 
         protected override async Task<bool> OnClosing(object parameter)
         {
-            var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
-                MessageButton.YesNo);
-            await DoWorkAsync();
-            return result == MessageResult.Yes;
+            if (await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
+                    MessageButton.YesNo) == MessageResult.Yes)
+            {
+                await DoWorkAsync();
+                return true;
+            }
+            return false;
         }
 
         private Task DoWorkAsync()

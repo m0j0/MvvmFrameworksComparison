@@ -145,9 +145,12 @@ namespace Cross.ViewModels
 
         private async Task<bool> TryCloseAsync()
         {
-            var result = _messagePresenter.ShowQuestion("Are you sure you want to close window?");
-            await DoWorkAsync();
-            return result;
+            if (_messagePresenter.ShowQuestion("Are you sure you want to close window?"))
+            {
+                await DoWorkAsync();
+                return true;
+            }
+            return false;
         }
 
         private async Task DoWorkAsync()
