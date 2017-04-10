@@ -18,13 +18,13 @@ To check, I created simple application with two windows:
   * Close: close window without parameter updating.
 * Should be confirmation of child window closing with long prosess emulating. 
 
-- [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
-- [Catel](https://github.com/catel/catel)
-- [Mugen MVVM Toolkit](https://github.com/MugenMvvmToolkit/MugenMvvmToolkit)
-- [MVVM Light Toolkit](https://mvvmlight.codeplex.com/)
-- [MvvmCross](https://github.com/MvvmCross/MvvmCross)
-- [Prism](https://github.com/PrismLibrary/Prism)
-- [ReactiveUI](https://github.com/reactiveui/ReactiveUI)
+- Caliburn.Micro ([Repository](https://github.com/Caliburn-Micro/Caliburn.Micro), [Stack Overflow](http://stackoverflow.com/questions/tagged/caliburn.micro))
+- Catel ([Repository](https://github.com/catel/catel), [Stack Overflow](http://stackoverflow.com/questions/tagged/catel))
+- Mugen MVVM Toolkit ([Repository](https://github.com/MugenMvvmToolkit/MugenMvvmToolkit), [Stack Overflow](http://stackoverflow.com/questions/tagged/mugenmvvmtoolkit))
+- MVVM Light Toolkit ([Repository](https://mvvmlight.codeplex.com/), [Stack Overflow](http://stackoverflow.com/questions/tagged/mvvm-light))
+- MvvmCross ([Repository](https://github.com/MvvmCross/MvvmCross), [Stack Overflow](http://stackoverflow.com/questions/tagged/mvvmcross))
+- Prism ([Repository](https://github.com/PrismLibrary/Prism), [Stack Overflow](http://stackoverflow.com/questions/tagged/prism))
+- ReactiveUI ([Repository](https://github.com/reactiveui/ReactiveUI), [Stack Overflow](http://stackoverflow.com/questions/tagged/reactiveui))
 
 Feature | Caliburn.Micro | Catel | Mugen MVVM Toolkit | MVVM Light Toolkit | MvvmCross | Prism | ReactiveUI
 --- | --- | --- | --- | --- | --- | --- | ---
