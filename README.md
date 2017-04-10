@@ -32,22 +32,23 @@ Core portable project | Yes | Yes | Yes | Yes | Yes | ? | ?
 Dialog navigation | Yes? | Yes | Yes | No? | No | ? | ?
 Passing parameters to navigable VM | Any types? | Yes | Any types | Any types? | Only primitives types | ? | ?
 Result of navigation operation | No | Yes | Yes | No? | No | ? | ?
-VM closing handling | Only synchronous operation | Without cancellation | Yes | No | No | ? | ?
+VM closing handling | Only synchronous operation | Without cancellation, ? | Yes | No | No | ? | ?
 Update commands on property changed | Yes | Yes | Yes | No | No | ? | ?
 Property validation | No | Yes | Yes | No | No | ? | ?
-Busy indication | No | ? | Yes | No | No | ? | ?
+Busy indication | No | Without async | Yes | No | No | ? | ?
 DI support | Yes | Yes | Yes | Yes | Yes | ? | ?
 Handling VM lifecycle | Yes | ? | Yes | No | ? | ? | ?
 
 ? - will be described later
 
-# Conclusion:
-- Caliburn.Micro:
-- Catel:
-- Mugen MVVM Toolkit:
-- MVVM Light Toolkit:
-- MvvmCross:
-- Prism:
-- ReactiveUI:
+# Conclusion
+- Caliburn.Micro: -
+- Catel: -  
+Doesn't support cancellation of closing operation. Doesn't support awaiting of long operation with busy indicator.
+- Mugen MVVM Toolkit: -
+- MVVM Light Toolkit: -
+- MvvmCross: -
+- Prism: -
+- ReactiveUI: -
 
 What next: -

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Catel.Data;
@@ -13,7 +12,8 @@ namespace Catel.ViewModels
     {
         #region Fields
 
-        private readonly IMessageService _messagePresenter;
+        private readonly IMessageService _messageService;
+        private readonly IPleaseWaitService _pleaseWaitService;
         private string _parameter;
         private string _originalParameter;
 
@@ -21,10 +21,12 @@ namespace Catel.ViewModels
 
         #region Constructors
 
-        public ChildViewModel(IMessageService messagePresenter)
+        public ChildViewModel(IMessageService messageService, IPleaseWaitService pleaseWaitService)
         {
-            if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
-            _messagePresenter = messagePresenter;
+            if (messageService == null) throw new ArgumentNullException(nameof(messageService));
+            if (pleaseWaitService == null) throw new ArgumentNullException(nameof(pleaseWaitService));
+            _messageService = messageService;
+            _pleaseWaitService = pleaseWaitService;
             ApplyCommand = new Command(Apply, CanApply);
             CloseCommand = new Command(CloseCmd);
         }
@@ -94,17 +96,11 @@ namespace Catel.ViewModels
 
         protected override async Task OnClosingAsync()
         {
-            var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
-                MessageButton.YesNo);
-            await DoWorkAsync();
-            //return result == MessageResult.Yes;
+            await _messageService.ShowAsync("Are you sure you want to close window?", "Question",
+                MessageButton.YesNo); // need to add cancelation of closing operation
+            _pleaseWaitService.Show(() => Task.Delay(2000), "Long running process emulation"); // need to add method ShowAsync
         }
-
-        private Task DoWorkAsync()
-        {
-            return Task.Delay(2000); //.WithBusyIndicator(this, "Long running process emulation");
-        }
-
+        
         #endregion
     }
 }
