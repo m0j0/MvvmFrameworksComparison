@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Catel.Data;
 using Catel.MVVM;
 using Catel.Services;
 
@@ -22,7 +25,8 @@ namespace Catel.ViewModels
         {
             if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
             _messagePresenter = messagePresenter;
-            ApplyCommand = new Command(Apply, CanApply, this);
+            ApplyCommand = new Command(Apply, CanApply);
+            CloseCommand = new Command(CloseCmd);
         }
 
         #endregion
@@ -43,11 +47,8 @@ namespace Catel.ViewModels
 
                 _parameter = value;
                 RaisePropertyChanged(nameof(Parameter));
-                Validate();
             }
         }
-
-        public bool? OperationResult { get; private set; }
 
         #endregion
 
@@ -57,13 +58,19 @@ namespace Catel.ViewModels
 
         private void Apply()
         {
-            OperationResult = true;
-            CloseAsync();
+            CloseViewModelAsync(true);
         }
 
         private bool CanApply()
         {
-            return true;
+            return !HasErrors;
+        }
+
+        public ICommand CloseCommand { get; }
+
+        private void CloseCmd()
+        {
+            CloseViewModelAsync(false);
         }
 
         #endregion
@@ -74,25 +81,24 @@ namespace Catel.ViewModels
         {
             _originalParameter = parameter;
             Parameter = parameter;
-            Validate();
         }
-
-        private void Validate()
+        
+        protected override void ValidateFields(List<IFieldValidationResult> validationResults)
         {
-            //Validator.SetErrors(nameof(Parameter),
-            //    _originalParameter == Parameter ||
-            //    string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter)
-            //        ? "Change parameter before update"
-            //        : null);
+            if (_originalParameter == Parameter ||
+                string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter))
+            {
+                validationResults.Add(FieldValidationResult.CreateError(nameof(Parameter), "Change parameter before update"));
+            }
         }
 
-        //protected override async Task<bool> OnClosing(object parameter)
-        //{
-        //    var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
-        //        MessageButton.YesNo);
-        //    await DoWorkAsync();
-        //    return result == MessageResult.Yes;
-        //}
+        protected override async Task OnClosingAsync()
+        {
+            var result = await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
+                MessageButton.YesNo);
+            await DoWorkAsync();
+            //return result == MessageResult.Yes;
+        }
 
         private Task DoWorkAsync()
         {
