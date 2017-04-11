@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.Core", "Mugen.Core\Mugen.Core.csproj", "{02ED43AD-4F99-4D01-A913-51644E70F1DE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.View.Wpf", "Mugen.View.Wpf\Mugen.View.Wpf.csproj", "{FE1FF5C3-9D6D-4635-81D6-35CBA7A8AFF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross.Core", "Cross.Core\Cross.Core.csproj", "{B34A49EB-F0C5-49F4-A951-CAA5B344A796}"
@@ -33,16 +31,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catel.View.Wpf", "Catel.Vie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.View.WinForms", "Mugen.View.WinForms\Mugen.View.WinForms.csproj", "{520B86E3-800C-42FA-AC97-29DAB287526C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.PortableCore", "Mugen.PortableCore\Mugen.PortableCore.csproj", "{71FE53C2-4918-493E-8068-BF0F019DF070}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02ED43AD-4F99-4D01-A913-51644E70F1DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02ED43AD-4F99-4D01-A913-51644E70F1DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02ED43AD-4F99-4D01-A913-51644E70F1DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02ED43AD-4F99-4D01-A913-51644E70F1DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE1FF5C3-9D6D-4635-81D6-35CBA7A8AFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE1FF5C3-9D6D-4635-81D6-35CBA7A8AFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE1FF5C3-9D6D-4635-81D6-35CBA7A8AFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +95,10 @@ Global
 		{520B86E3-800C-42FA-AC97-29DAB287526C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{520B86E3-800C-42FA-AC97-29DAB287526C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{520B86E3-800C-42FA-AC97-29DAB287526C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71FE53C2-4918-493E-8068-BF0F019DF070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71FE53C2-4918-493E-8068-BF0F019DF070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71FE53C2-4918-493E-8068-BF0F019DF070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71FE53C2-4918-493E-8068-BF0F019DF070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -108,9 +108,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mugen.Core\Mugen.Core.csproj">
-      <Project>{02ed43ad-4f99-4d01-a913-51644e70f1de}</Project>
-      <Name>Mugen.Core</Name>
+    <ProjectReference Include="..\Mugen.PortableCore\Mugen.PortableCore.csproj">
+      <Project>{71fe53c2-4918-493e-8068-bf0f019df070}</Project>
+      <Name>Mugen.PortableCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
