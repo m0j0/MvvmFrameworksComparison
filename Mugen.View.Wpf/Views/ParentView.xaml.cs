@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
 
 namespace Mugen.Views
 {
-    public partial class ParentView : Window
+    public partial class ParentView : UserControl
     {
         public ParentView()
         {

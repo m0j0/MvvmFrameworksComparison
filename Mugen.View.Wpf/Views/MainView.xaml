@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:Mugen.Views"
         xmlns:viewModels="clr-namespace:Mugen.ViewModels;assembly=Mugen.PortableCore"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
-        Title="MainView" Height="300" Width="300">
+        Title="MainView" Height="300" Width="500">
+    <Window.Resources>
+        <InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </Window.Resources>
+
     <Grid>
         <TabControl ItemsSource="{Binding Path=ItemsSource}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
             <TabControl.ItemTemplate>
@@ -15,24 +19,27 @@
                         <TextBlock FontSize="14" Text="{Binding Path=DisplayName}" />
                         <Button Margin="5 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center"
                                 Command="{Binding Path=CloseCommand}">
-                            <TextBlock TextWrapping="Wrap" Text="r" FontFamily="Webdings" Foreground="Black" FontSize="11" />
+                            <TextBlock TextWrapping="Wrap" Text="r" FontFamily="Webdings" Foreground="Black"
+                                       FontSize="11" />
                         </Button>
                     </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>
-            
+
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <Grid>
                         <ContentPresenter Content="{ViewModelToViewBinding}"
                                           IsEnabled="{Binding Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
-                        <StackPanel View.Visible="{Binding Path=IsBusy}" VerticalAlignment="Center" Margin="4" Width="200">
-                            <TextBlock Text="{Binding Path=BusyMessage}" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                        <StackPanel View.Visible="{Binding Path=IsBusy}" VerticalAlignment="Center" Margin="4"
+                                    Width="200">
+                            <TextBlock Text="{Binding Path=BusyMessage}" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" />
                             <ProgressBar IsIndeterminate="True" HorizontalAlignment="Stretch" Height="10" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
-                
+
             </TabControl.ContentTemplate>
         </TabControl>
     </Grid>

@@ -74,7 +74,7 @@ namespace Mugen.ViewModels
 
         private async void OpenChildViewModel()
         {
-            using (var viewModel = GetViewModel<ChildViewModel>())
+            using (var viewModel = GetViewModel<ChildViewModel>(ObservationMode.None))
             {
                 viewModel.Initialize(Parameter);
                 
