@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Caliburn.Views"
-        xmlns:viewModels="clr-namespace:Caliburn.ViewModels;assembly=Caliburn.Core"
+        xmlns:viewModels="clr-namespace:Caliburn.ViewModels;assembly=Caliburn.PortableCore"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
         Title="{Binding DisplayName}" Height="300" Width="300">

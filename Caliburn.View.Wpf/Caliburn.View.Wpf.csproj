@@ -120,11 +120,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Caliburn.Core\Caliburn.Core.csproj">
-      <Project>{f1f7b1c6-606c-475f-86b1-d68106d5a35b}</Project>
-      <Name>Caliburn.Core</Name>
+    <ProjectReference Include="..\Caliburn.PortableCore\Caliburn.PortableCore.csproj">
+      <Project>{8f16883f-25d4-4a7e-a4bf-6854911b6b17}</Project>
+      <Name>Caliburn.PortableCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
