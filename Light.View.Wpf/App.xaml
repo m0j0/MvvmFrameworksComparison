@@ -1,6 +1,6 @@
 <Application x:Class="Light.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              StartupUri="Views\MainView.xaml" 
-             xmlns:viewModel="clr-namespace:Light;assembly=Light.Core">
+             xmlns:viewModel="clr-namespace:Light;assembly=Light.PortableCore">
   <Application.Resources>
     <ResourceDictionary>
       <viewModel:ViewModelLocator x:Key="Locator" />

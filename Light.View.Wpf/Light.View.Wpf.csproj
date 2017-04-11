@@ -127,9 +127,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Light.Core\Light.Core.csproj">
-      <Project>{d5e991b9-b739-4fe7-8f92-b1a43fc89ff8}</Project>
-      <Name>Light.Core</Name>
+    <ProjectReference Include="..\Light.PortableCore\Light.PortableCore.csproj">
+      <Project>{183c7173-a80e-45a3-b7bf-a3780a70bbb9}</Project>
+      <Name>Light.PortableCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
