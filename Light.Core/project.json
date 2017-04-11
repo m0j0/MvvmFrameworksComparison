@@ -1,6 +1,7 @@
 ﻿{
   "supports": {},
   "dependencies": {
+    "Microsoft.Net.Compilers": "2.0.1",
     "MvvmLightLibs": "5.3.0"
   },
   "frameworks": {

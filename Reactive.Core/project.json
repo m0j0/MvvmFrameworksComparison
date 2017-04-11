@@ -1,6 +1,7 @@
 ﻿{
   "supports": {},
   "dependencies": {
+    "Microsoft.Net.Compilers": "2.0.1",
     "reactiveui": "7.2.0"
   },
   "frameworks": {

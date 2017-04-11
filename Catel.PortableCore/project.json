@@ -1,7 +1,8 @@
 ﻿{
   "supports": {},
   "dependencies": {
-    "Catel.MVVM": "4.5.4"
+    "Catel.MVVM": "4.5.4",
+    "Microsoft.Net.Compilers": "2.0.1"
   },
   "frameworks": {
     ".NETPortable,Version=v4.5,Profile=Profile7": {}

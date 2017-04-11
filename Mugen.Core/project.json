@@ -1,6 +1,7 @@
-{
+﻿{
   "supports": {},
   "dependencies": {
+    "Microsoft.Net.Compilers": "2.0.1",
     "MugenMVVMToolkit": "6.0.0"
   },
   "frameworks": {
