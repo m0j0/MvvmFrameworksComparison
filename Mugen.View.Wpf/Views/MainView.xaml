@@ -3,28 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mugen.Views"
         xmlns:viewModels="clr-namespace:Mugen.ViewModels;assembly=Mugen.PortableCore"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
-        Title="{Binding DisplayName}" Height="350" Width="525">
+        Title="MainView" Height="300" Width="300">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <CheckBox Grid.Row="0" Content="Can open child window"
-                  IsChecked="{Binding CanOpenChildViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0" Text="Parameter to child view model:" />
-            <TextBox Grid.Column="1" Text="{Binding Parameter, Mode=TwoWay}" />
-        </Grid>
-        <Button Grid.Row="2" Content="Open child window"
-                Command="{Binding OpenChildViewModelCommand}" />
+        <TabControl ItemsSource="{Binding Path=ItemsSource}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="2,2,2,2">
+                        <TextBlock FontSize="14" Text="{Binding Path=DisplayName}" />
+                        <Button Margin="5 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Command="{Binding Path=CloseCommand}">
+                            <TextBlock TextWrapping="Wrap" Text="r" FontFamily="Webdings" Foreground="Black" FontSize="11" />
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <ContentPresenter Content="{ViewModelToViewBinding}"
+                                          IsEnabled="{Binding Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+                        <StackPanel View.Visible="{Binding Path=IsBusy}" VerticalAlignment="Center" Margin="4" Width="200">
+                            <TextBlock Text="{Binding Path=BusyMessage}" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                            <ProgressBar IsIndeterminate="True" HorizontalAlignment="Stretch" Height="10" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+                
+            </TabControl.ContentTemplate>
+        </TabControl>
     </Grid>
 </Window>

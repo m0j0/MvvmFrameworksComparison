@@ -14,7 +14,7 @@ namespace Mugen.Views
             using (var set = new BindingSet())
             {
                 set.Bind(this, nameof(Text))
-                    .To(nameof(MainViewModel.DisplayName));
+                    .To(nameof(ChildViewModel.DisplayName));
                 set.Bind(textBoxParameter, nameof(textBoxParameter.Text))
                     .To(nameof(ChildViewModel.Parameter))
                     .TwoWay()
