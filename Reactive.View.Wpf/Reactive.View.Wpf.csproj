@@ -118,11 +118,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Reactive.Core\Reactive.Core.csproj">
-      <Project>{ec3623d1-cdec-4ccd-aab2-0377b513705c}</Project>
-      <Name>Reactive.Core</Name>
+    <ProjectReference Include="..\Reactive.PortableCore\Reactive.PortableCore.csproj">
+      <Project>{78f28e9d-a516-496b-a230-769163602d16}</Project>
+      <Name>Reactive.PortableCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
