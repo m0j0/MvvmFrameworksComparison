@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Light.View.Wpf")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Applied Materials")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Light.View.Wpf")]
-[assembly: AssemblyCopyright("Copyright © Applied Materials 2017")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
