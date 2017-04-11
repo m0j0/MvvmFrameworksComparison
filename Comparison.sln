@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mugen.View.Wpf", "Mugen.View.Wpf\Mugen.View.Wpf.csproj", "{FE1FF5C3-9D6D-4635-81D6-35CBA7A8AFF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross.Core", "Cross.Core\Cross.Core.csproj", "{B34A49EB-F0C5-49F4-A951-CAA5B344A796}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross.PortableCore", "Cross.PortableCore\Cross.PortableCore.csproj", "{B34A49EB-F0C5-49F4-A951-CAA5B344A796}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross.View.Wpf", "Cross.View.Wpf\Cross.View.Wpf.csproj", "{D96FD043-87A6-4AF1-BF83-10608FD196AA}"
 EndProject

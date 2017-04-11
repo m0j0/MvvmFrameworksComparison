@@ -133,9 +133,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Cross.Core\Cross.Core.csproj">
+    <ProjectReference Include="..\Cross.PortableCore\Cross.PortableCore.csproj">
       <Project>{b34a49eb-f0c5-49f4-a951-caa5b344a796}</Project>
-      <Name>Cross.Core</Name>
+      <Name>Cross.PortableCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
