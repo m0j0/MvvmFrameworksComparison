@@ -132,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Prism.PortableCore\Prism.PortableCore.csproj">
-      <Project>{74ed450f-8297-4f59-9f89-76ca6036fe7f}</Project>
+      <Project>{17631c0e-064d-4cc4-ba62-00cf0bfc368a}</Project>
       <Name>Prism.PortableCore</Name>
     </ProjectReference>
   </ItemGroup>
