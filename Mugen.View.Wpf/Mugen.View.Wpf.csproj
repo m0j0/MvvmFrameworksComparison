@@ -73,6 +73,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CompositeNestedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CompositeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,8 +93,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DesignBootstrapper.cs" />
     <Compile Include="Views\ChildView.xaml.cs">
       <DependentUpon>ChildView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompositeNestedView.xaml.cs">
+      <DependentUpon>CompositeNestedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompositeView.xaml.cs">
+      <DependentUpon>CompositeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

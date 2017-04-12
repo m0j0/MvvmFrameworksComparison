@@ -1,5 +1,9 @@
 ﻿<Application x:Class="Mugen.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Application.Resources />
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mugen="clr-namespace:Mugen">
+    <Application.Resources>
+        <mugen:DesignBootstrapper x:Key="DesignBootstrapper" />
+        <ViewModelToViewConverter x:Key="ViewModelToViewConverter" />
+    </Application.Resources>
 </Application>

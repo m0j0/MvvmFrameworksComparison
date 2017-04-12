@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mugen.Views"
         xmlns:viewModels="clr-namespace:Mugen.ViewModels;assembly=Mugen.PortableCore"
-        mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+        mc:Ignorable="d" d:DataContext="{Binding Source={StaticResource DesignBootstrapper}, Path=MainViewModel}"
         Title="MainView" Height="300" Width="500">
     <Window.Resources>
         <InverseBooleanConverter x:Key="InverseBooleanConverter" />
@@ -16,7 +16,7 @@
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="2,2,2,2">
-                        <TextBlock FontSize="14" Text="{Binding Path=DisplayName}" />
+                        <TextBlock Text="{Binding Path=DisplayName}" />
                         <Button Margin="5 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center"
                                 Command="{Binding Path=CloseCommand}">
                             <TextBlock TextWrapping="Wrap" Text="r" FontFamily="Webdings" Foreground="Black"

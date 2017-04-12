@@ -27,14 +27,14 @@ namespace Mugen.ViewModels
             Should.NotBeNull(messagePresenter, nameof(messagePresenter));
             _messagePresenter = messagePresenter;
             CanOpenChildViewModel = true;
-            OpenChildViewModelCommand =  new RelayCommand(OpenChildViewModel, CanExecuteOpenChildViewModel, this);
+            OpenChildViewModelCommand = new RelayCommand(OpenChildViewModel, CanExecuteOpenChildViewModel, this);
         }
 
         #endregion
         
         #region Properties
 
-        public string DisplayName => "Main view model";
+        public string DisplayName => "Parent view model";
 
         public bool CanOpenChildViewModel
         {

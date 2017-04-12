@@ -43,6 +43,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ChildViewModel.cs" />
+    <Compile Include="ViewModels\CompositeNestedViewModel.cs" />
+    <Compile Include="ViewModels\CompositeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ParentViewModel.cs" />
   </ItemGroup>
