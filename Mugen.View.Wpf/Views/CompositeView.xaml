@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Mugen.Views"
-             xmlns:viewModels="clr-namespace:Mugen.ViewModels;assembly=Mugen.PortableCore"
              mc:Ignorable="d"
              d:DataContext="{Binding Source={StaticResource DesignBootstrapper}, Path=CompositeViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -20,7 +19,7 @@
 
         <Grid Grid.Row="1"
               DataContext="{Binding SecondNestedViewModel}">
-            <ContentPresenter Content="{ViewModelToViewBinding}" />
+            <ContentPresenter Content="{Binding Converter={StaticResource ViewModelToViewConverter}}" />
         </Grid>
 
         <local:CompositeNestedView Grid.Row="2"

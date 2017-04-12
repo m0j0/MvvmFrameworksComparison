@@ -25,6 +25,7 @@ namespace Mugen.ViewModels
         }
 
         #endregion
+
         #region Properties
 
         public int Id

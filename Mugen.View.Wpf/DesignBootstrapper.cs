@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mugen.ViewModels;
 using MugenMvvmToolkit;
-using MugenMvvmToolkit.ViewModels;
 using MugenMvvmToolkit.Interfaces;
-using MugenMvvmToolkit.Models;
+using MugenMvvmToolkit.ViewModels;
 using MugenMvvmToolkit.WPF.Infrastructure;
 
 namespace Mugen
@@ -18,10 +13,14 @@ namespace Mugen
 
         private sealed class DefaultApp : MvvmApplication
         {
+            #region Methods
+
             public override Type GetStartViewModelType()
             {
                 return typeof(MainViewModel);
             }
+
+            #endregion
         }
 
         #endregion
@@ -44,9 +43,8 @@ namespace Mugen
 
         public MainViewModel MainViewModel => GetOrAddViewModel(provider => provider.GetViewModel<MainViewModel>());
 
-        public CompositeViewModel CompositeViewModel => GetOrAddViewModel(provider => provider.GetViewModel<CompositeViewModel>());
-
-        public CompositeNestedViewModel CompositeNestedViewModel => GetOrAddViewModel(provider => provider.GetViewModel<CompositeNestedViewModel>());
+        public CompositeViewModel CompositeViewModel => GetOrAddViewModel(provider => provider
+            .GetViewModel<CompositeViewModel>());
 
         #endregion
     }

@@ -3,24 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Mugen.Views"
-        xmlns:viewModels="clr-namespace:Mugen.ViewModels;assembly=Mugen.PortableCore"
         mc:Ignorable="d" d:DataContext="{Binding Source={StaticResource DesignBootstrapper}, Path=MainViewModel}"
-        Title="MainView" Height="300" Width="500">
-    <Window.Resources>
-        <InverseBooleanConverter x:Key="InverseBooleanConverter" />
-    </Window.Resources>
-
+        Title="{Binding DisplayName}" Height="300" Width="500">
     <Grid>
-        <TabControl ItemsSource="{Binding Path=ItemsSource}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"
+                Command="{Binding AddNewTabCommand}"
+                Content="Add new composite view model tab"
+                Width="200" HorizontalAlignment="Left" />
+
+        <TabControl Grid.Row="1"
+                    ItemsSource="{Binding Path=ItemsSource}"
+                    SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="2,2,2,2">
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Path=DisplayName}" />
-                        <Button Margin="5 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center"
-                                Command="{Binding Path=CloseCommand}">
+                        <Button Command="{Binding Path=CloseCommand}">
                             <TextBlock TextWrapping="Wrap" Text="r" FontFamily="Webdings" Foreground="Black"
-                                       FontSize="11" />
+                                       FontSize="10" />
                         </Button>
                     </StackPanel>
                 </DataTemplate>
@@ -28,18 +33,8 @@
 
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <ContentPresenter Content="{ViewModelToViewBinding}"
-                                          IsEnabled="{Binding Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
-                        <StackPanel View.Visible="{Binding Path=IsBusy}" VerticalAlignment="Center" Margin="4"
-                                    Width="200">
-                            <TextBlock Text="{Binding Path=BusyMessage}" HorizontalAlignment="Center"
-                                       TextWrapping="Wrap" />
-                            <ProgressBar IsIndeterminate="True" HorizontalAlignment="Stretch" Height="10" />
-                        </StackPanel>
-                    </Grid>
+                    <ContentPresenter Content="{ViewModelToViewBinding}" />
                 </DataTemplate>
-
             </TabControl.ContentTemplate>
         </TabControl>
     </Grid>
