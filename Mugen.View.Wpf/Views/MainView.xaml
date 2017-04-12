@@ -24,8 +24,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Path=DisplayName}" />
                         <Button Command="{Binding Path=CloseCommand}">
-                            <TextBlock TextWrapping="Wrap" Text="r" FontFamily="Webdings" Foreground="Black"
-                                       FontSize="10" />
+                            <TextBlock Text="r" FontFamily="Webdings" />
                         </Button>
                     </StackPanel>
                 </DataTemplate>
