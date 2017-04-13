@@ -15,7 +15,7 @@ namespace Mugen.Views
 
             using (var set = new BindingSet<MainViewModel>())
             {
-                set.Bind(this, nameof(Text))
+                set.Bind(this, () => v => v.Text)
                     .To(() => (vm, ctx) => vm.DisplayName);
 
                 set.Bind(buttonAddNewTab)

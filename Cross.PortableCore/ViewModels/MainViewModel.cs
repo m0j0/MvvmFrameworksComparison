@@ -25,7 +25,10 @@ namespace Cross.ViewModels
 
         #region Properties
 
-        public string DisplayName => "Main view model";
+        public string DisplayName
+        {
+            get { return "Main view model"; }
+        }
 
         public bool CanOpenChildViewModel
         {
@@ -62,7 +65,10 @@ namespace Cross.ViewModels
 
         #region Commands
 
-        public ICommand OpenChildViewModelCommand => _openChildViewModelCommand;
+        public ICommand OpenChildViewModelCommand
+        {
+            get { return _openChildViewModelCommand; }
+        }
 
         private void OpenChildViewModel()
         {

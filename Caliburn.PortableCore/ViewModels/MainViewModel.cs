@@ -19,7 +19,7 @@ namespace Caliburn.ViewModels
 
         public MainViewModel(IWindowManagerPortable windowManager)
         {
-            if (windowManager == null) throw new ArgumentNullException(nameof(windowManager));
+            if (windowManager == null) throw new ArgumentNullException("windowManager");
             _windowManager = windowManager;
             CanOpenChildViewModel = true;
         }
@@ -28,7 +28,10 @@ namespace Caliburn.ViewModels
 
         #region Properties
 
-        public override string DisplayName => "Main view model";
+        public override string DisplayName
+        {
+            get { return "Main view model"; }
+        }
 
         public bool CanOpenChildViewModel
         {
@@ -83,22 +86,22 @@ namespace Caliburn.ViewModels
 
         protected override void OnActivate()
         {
-            Debug.WriteLine($"{DisplayName} activated");
+            Debug.WriteLine("{0} activated", DisplayName);
         }
 
         protected override void OnInitialize()
         {
-            Debug.WriteLine($"{DisplayName} initialized");
+            Debug.WriteLine("{0} initialized", DisplayName);
         }
 
         protected override void OnDeactivate(bool close)
         {
-            Debug.WriteLine($"{DisplayName} deactiveted");
+            Debug.WriteLine("{0} deactiveted", DisplayName);
         }
 
         protected override void OnViewLoaded(object view)
         {
-            Debug.WriteLine($"{DisplayName} view loaded");
+            Debug.WriteLine("{0} view loaded", DisplayName);
         }
 
         #endregion

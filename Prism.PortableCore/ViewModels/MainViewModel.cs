@@ -11,6 +11,7 @@ namespace Prism.ViewModels
         
         private bool _canOpenChildViewModel;
         private string _parameter;
+        private readonly ICommand _openChildViewModelCommand;
 
         #endregion
 
@@ -19,14 +20,17 @@ namespace Prism.ViewModels
         public MainViewModel()
         {
             CanOpenChildViewModel = true;
-            OpenChildViewModelCommand = new DelegateCommand(OpenChildViewModel, CanExecuteOpenChildViewModel).ObservesProperty(() => CanOpenChildViewModel);
+            _openChildViewModelCommand = new DelegateCommand(OpenChildViewModel, CanExecuteOpenChildViewModel).ObservesProperty(() => CanOpenChildViewModel);
         }
 
         #endregion
 
         #region Properties
 
-        public string DisplayName => "Main view model";
+        public string DisplayName
+        {
+            get { return "Main view model"; }
+        }
 
         public bool CanOpenChildViewModel
         {
@@ -62,7 +66,10 @@ namespace Prism.ViewModels
 
         #region Commands
 
-        public ICommand OpenChildViewModelCommand { get; }
+        public ICommand OpenChildViewModelCommand
+        {
+            get { return _openChildViewModelCommand; }
+        }
 
         private void OpenChildViewModel()
         {

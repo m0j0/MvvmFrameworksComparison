@@ -14,7 +14,7 @@ namespace Light.Views
 
         private void NotificationMessageReceived(NotificationMessage msg)
         {
-            if (msg.Notification == nameof(ChildViewModel))
+            if (msg.Notification == ViewModelLocator.ShowChildViewModelMessage)
             {
                 var view2 = new ChildView();
                 view2.Show();

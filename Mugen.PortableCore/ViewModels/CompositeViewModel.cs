@@ -1,4 +1,5 @@
-﻿using MugenMvvmToolkit.Interfaces.Models;
+﻿using MugenMvvmToolkit;
+using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.ViewModels;
 
 namespace Mugen.ViewModels
@@ -7,6 +8,9 @@ namespace Mugen.ViewModels
     {
         #region Fields
 
+        private readonly CompositeNestedViewModel _firstNestedViewModel;
+        private readonly CompositeNestedViewModel _secondNestedViewModel;
+        private readonly CompositeNestedViewModel _thirdNestedViewModel;
         private string _displayName;
         private int _id;
 
@@ -16,11 +20,11 @@ namespace Mugen.ViewModels
 
         public CompositeViewModel()
         {
-            FirstNestedViewModel = GetViewModel<CompositeNestedViewModel>();
+            _firstNestedViewModel = GetViewModel<CompositeNestedViewModel>();
             FirstNestedViewModel.DisplayName = "First nested view model";
-            SecondNestedViewModel = GetViewModel<CompositeNestedViewModel>();
+            _secondNestedViewModel = GetViewModel<CompositeNestedViewModel>();
             SecondNestedViewModel.DisplayName = "Second nested view model";
-            ThirdNestedViewModel = GetViewModel<CompositeNestedViewModel>();
+            _thirdNestedViewModel = GetViewModel<CompositeNestedViewModel>();
             ThirdNestedViewModel.DisplayName = "Third nested view model";
         }
 
@@ -33,11 +37,14 @@ namespace Mugen.ViewModels
             get { return _id; }
             set
             {
-                if (value == _id) return;
+                if (value == _id)
+                {
+                    return;
+                }
                 _id = value;
                 _displayName = "Composite view model " + _id;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(DisplayName));
+                this.OnPropertyChanged(() => vm => vm.DisplayName);
             }
         }
 
@@ -46,11 +53,20 @@ namespace Mugen.ViewModels
             get { return _displayName; }
         }
 
-        public CompositeNestedViewModel FirstNestedViewModel { get; }
+        public CompositeNestedViewModel FirstNestedViewModel
+        {
+            get { return _firstNestedViewModel; }
+        }
 
-        public CompositeNestedViewModel SecondNestedViewModel { get; }
+        public CompositeNestedViewModel SecondNestedViewModel
+        {
+            get { return _secondNestedViewModel; }
+        }
 
-        public CompositeNestedViewModel ThirdNestedViewModel { get; }
+        public CompositeNestedViewModel ThirdNestedViewModel
+        {
+            get { return _thirdNestedViewModel; }
+        }
 
         #endregion
     }

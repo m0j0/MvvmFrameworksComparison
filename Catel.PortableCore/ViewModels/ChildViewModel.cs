@@ -17,6 +17,8 @@ namespace Catel.ViewModels
         private readonly IPleaseWaitService _pleaseWaitService;
         private string _parameter;
         private string _originalParameter;
+        private readonly ICommand _applyCommand;
+        private readonly ICommand _closeCommand;
 
         #endregion
 
@@ -24,26 +26,29 @@ namespace Catel.ViewModels
 
         public ChildViewModel(IMessageService messageService, IPleaseWaitService pleaseWaitService)
         {
-            if (messageService == null) throw new ArgumentNullException(nameof(messageService));
-            if (pleaseWaitService == null) throw new ArgumentNullException(nameof(pleaseWaitService));
+            if (messageService == null) throw new ArgumentNullException("messageService");
+            if (pleaseWaitService == null) throw new ArgumentNullException("pleaseWaitService");
             _messageService = messageService;
             _pleaseWaitService = pleaseWaitService;
-            ApplyCommand = new Command(Apply, CanApply);
-            CloseCommand = new Command(CloseCmd);
+            _applyCommand = new Command(Apply, CanApply);
+            _closeCommand = new Command(CloseCmd);
 
-            CanceledAsync += async (sender, args) => Debug.WriteLine($"{Title} canceled");
-            CancelingAsync += async (sender, args) => Debug.WriteLine($"{Title} canceling");
-            ClosedAsync += async (sender, args) => Debug.WriteLine($"{Title} closed");
-            ClosingAsync += async (sender, args) => Debug.WriteLine($"{Title} closing");
-            InitializedAsync += async (sender, args) => Debug.WriteLine($"{Title} initialized");
-            NavigationCompleted += async (sender, args) => Debug.WriteLine($"{Title} navigation");
+            CanceledAsync += async (sender, args) => Debug.WriteLine("{0} canceled", Title);
+            CancelingAsync += async (sender, args) => Debug.WriteLine("{0} canceling", Title);
+            ClosedAsync += async (sender, args) => Debug.WriteLine("{0} closed", Title);
+            ClosingAsync += async (sender, args) => Debug.WriteLine("{0} closing", Title);
+            InitializedAsync += async (sender, args) => Debug.WriteLine("{0} initialized", Title);
+            NavigationCompleted += async (sender, args) => Debug.WriteLine("{0} navigation", Title);
         }
 
         #endregion
 
         #region Properties
 
-        public override string Title => "Child view model";
+        public override string Title
+        {
+            get { return "Child view model"; }
+        }
 
         public string Parameter
         {
@@ -56,7 +61,7 @@ namespace Catel.ViewModels
                 }
 
                 _parameter = value;
-                RaisePropertyChanged(nameof(Parameter));
+                RaisePropertyChanged(() => Parameter);
             }
         }
 
@@ -64,7 +69,10 @@ namespace Catel.ViewModels
 
         #region Commands
 
-        public ICommand ApplyCommand { get; }
+        public ICommand ApplyCommand
+        {
+            get { return _applyCommand; }
+        }
 
         private void Apply()
         {
@@ -76,7 +84,10 @@ namespace Catel.ViewModels
             return !HasErrors;
         }
 
-        public ICommand CloseCommand { get; }
+        public ICommand CloseCommand
+        {
+            get { return _closeCommand; }
+        }
 
         private void CloseCmd()
         {
@@ -98,7 +109,7 @@ namespace Catel.ViewModels
             if (_originalParameter == Parameter ||
                 string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter))
             {
-                validationResults.Add(FieldValidationResult.CreateError(nameof(Parameter), "Change parameter before update"));
+                validationResults.Add(FieldValidationResult.CreateError(() => Parameter, "Change parameter before update"));
             }
         }
 

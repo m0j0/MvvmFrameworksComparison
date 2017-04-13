@@ -15,6 +15,7 @@ namespace Catel.ViewModels
         private readonly ITypeFactory _typeFactory;
         private bool _canOpenChildViewModel;
         private string _parameter;
+        private readonly ICommand _openChildViewModelCommand;
 
         #endregion
 
@@ -22,26 +23,29 @@ namespace Catel.ViewModels
 
         public MainViewModel(IUIVisualizerService uiVisualizerService, ITypeFactory typeFactory)
         {
-            if (uiVisualizerService == null) throw new ArgumentNullException(nameof(uiVisualizerService));
-            if (typeFactory == null) throw new ArgumentNullException(nameof(typeFactory));
+            if (uiVisualizerService == null) throw new ArgumentNullException("uiVisualizerService");
+            if (typeFactory == null) throw new ArgumentNullException("typeFactory");
             _uiVisualizerService = uiVisualizerService;
             _typeFactory = typeFactory;
-            OpenChildViewModelCommand = new Command(OpenChildViewModel, CanExecuteOpenChildViewModel);
+            _openChildViewModelCommand = new Command(OpenChildViewModel, CanExecuteOpenChildViewModel);
             CanOpenChildViewModel = true;
 
-            CanceledAsync += async (sender, args)  => Debug.WriteLine($"{Title} canceled");
-            CancelingAsync += async (sender, args) => Debug.WriteLine($"{Title} canceling");
-            ClosedAsync += async (sender, args) => Debug.WriteLine($"{Title} closed");
-            ClosingAsync += async (sender, args) => Debug.WriteLine($"{Title} closing");
-            InitializedAsync += async (sender, args) => Debug.WriteLine($"{Title} initialized");
-            NavigationCompleted += async (sender, args) => Debug.WriteLine($"{Title} navigation");
+            CanceledAsync += async (sender, args)  => Debug.WriteLine("{0} canceled", Title);
+            CancelingAsync += async (sender, args) => Debug.WriteLine("{0} canceling", Title);
+            ClosedAsync += async (sender, args) => Debug.WriteLine("{0} closed", Title);
+            ClosingAsync += async (sender, args) => Debug.WriteLine("{0} closing", Title);
+            InitializedAsync += async (sender, args) => Debug.WriteLine("{0} initialized", Title);
+            NavigationCompleted += async (sender, args) => Debug.WriteLine("{0} navigation", Title);
         }
 
         #endregion
 
         #region Properties
 
-        public override string Title => "Main view model";
+        public override string Title
+        {
+            get { return "Main view model"; }
+        }
 
         public bool CanOpenChildViewModel
         {
@@ -54,7 +58,7 @@ namespace Catel.ViewModels
                 }
 
                 _canOpenChildViewModel = value;
-                RaisePropertyChanged(nameof(CanOpenChildViewModel));
+                RaisePropertyChanged(() => CanOpenChildViewModel);
             }
         }
 
@@ -69,7 +73,7 @@ namespace Catel.ViewModels
                 }
 
                 _parameter = value;
-                RaisePropertyChanged(nameof(Parameter));
+                RaisePropertyChanged(() => Parameter);
             }
         }
 
@@ -77,11 +81,14 @@ namespace Catel.ViewModels
 
         #region Commands
 
-        public ICommand OpenChildViewModelCommand { get; }
+        public ICommand OpenChildViewModelCommand
+        {
+            get { return _openChildViewModelCommand; }
+        }
 
         private async void OpenChildViewModel()
         {
-            var vm = _typeFactory.CreateInstance<ChildViewModel>();
+            ChildViewModel vm = _typeFactory.CreateInstance<ChildViewModel>();
             vm.Initialize(Parameter);
 
             if (!(await _uiVisualizerService.ShowDialogAsync(vm)).GetValueOrDefault())

@@ -26,7 +26,7 @@ namespace Caliburn.ViewModels
 
         public ChildViewModel(IMessagePresenter messagePresenter)
         {
-            if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
+            if (messagePresenter == null) throw new ArgumentNullException("messagePresenter");
             _messagePresenter = messagePresenter;
         }
 
@@ -34,7 +34,10 @@ namespace Caliburn.ViewModels
 
         #region Properties
 
-        public override string DisplayName => "Child view model";
+        public override string DisplayName
+        {
+            get { return "Child view model"; }
+        }
 
         public string Parameter
         {
@@ -91,7 +94,10 @@ namespace Caliburn.ViewModels
             ((ICloseableView)GetView()).Close(true);
         }
 
-        public bool CanApply => !HasErrors;
+        public bool CanApply
+        {
+            get { return !HasErrors; }
+        }
 
         public void Close()
         {
@@ -118,10 +124,14 @@ namespace Caliburn.ViewModels
                 ? "Change parameter before update"
                 : null;
             
-            NotifyOfPropertyChange(nameof(CanApply));
+            NotifyOfPropertyChange(() => CanApply);
             if (hasErrorBefore != HasErrors)
             {
-                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Parameter)));
+                var handler = ErrorsChanged;
+                if (handler != null)
+                {
+                    handler(this, new DataErrorsChangedEventArgs("Parameter"));
+                }
             }
         }
 
@@ -150,22 +160,22 @@ namespace Caliburn.ViewModels
 
         protected override void OnActivate()
         {
-            Debug.WriteLine($"{DisplayName} activated");
+            Debug.WriteLine("{0} activated", DisplayName);
         }
 
         protected override void OnInitialize()
         {
-            Debug.WriteLine($"{DisplayName} initialized");
+            Debug.WriteLine("{0} initialized", DisplayName);
         }
 
         protected override void OnDeactivate(bool close)
         {
-            Debug.WriteLine($"{DisplayName} deactiveted");
+            Debug.WriteLine("{0} deactiveted", DisplayName);
         }
 
         protected override void OnViewLoaded(object view)
         {
-            Debug.WriteLine($"{DisplayName} view loaded");
+            Debug.WriteLine("{0} view loaded", DisplayName);
         }
 
         #endregion
@@ -174,7 +184,7 @@ namespace Caliburn.ViewModels
 
         public IEnumerable GetErrors(string propertyName)
         {
-            if (propertyName != nameof(Parameter))
+            if (propertyName != "Parameter")
             {
                 return null;
             }
@@ -182,7 +192,10 @@ namespace Caliburn.ViewModels
             return _parameterError;
         }
 
-        public bool HasErrors => !string.IsNullOrEmpty(_parameterError);
+        public bool HasErrors
+        {
+            get { return !string.IsNullOrEmpty(_parameterError); }
+        }
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 

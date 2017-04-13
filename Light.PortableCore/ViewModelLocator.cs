@@ -6,6 +6,8 @@ namespace Light
 {
     public class ViewModelLocator
     {
+        public const string ShowChildViewModelMessage = "ShowChildViewModelMessage";
+
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -14,9 +16,15 @@ namespace Light
             SimpleIoc.Default.Register<ChildViewModel>();
         }
 
-        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public MainViewModel MainViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
+        }
 
-        public ChildViewModel ChildViewModel => ServiceLocator.Current.GetInstance<ChildViewModel>();
+        public ChildViewModel ChildViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<ChildViewModel>(); }
+        }
 
         public static void Cleanup()
         {

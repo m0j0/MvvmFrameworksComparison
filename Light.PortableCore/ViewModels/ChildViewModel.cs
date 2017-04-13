@@ -22,6 +22,7 @@ namespace Light.ViewModels
         private string _busyMessage;
         private string _parameterError;
         private readonly RelayCommand _applyCommand;
+        private readonly ICommand _closeCommand;
 
         #endregion
 
@@ -29,17 +30,20 @@ namespace Light.ViewModels
 
         public ChildViewModel(IMessagePresenter messagePresenter)
         {
-            if (messagePresenter == null) throw new ArgumentNullException(nameof(messagePresenter));
+            if (messagePresenter == null) throw new ArgumentNullException("messagePresenter");
             _messagePresenter = messagePresenter;
             _applyCommand = new RelayCommand(Apply, CanApply);
-            CloseCommand = new RelayCommand(Close);
+            _closeCommand = new RelayCommand(Close);
         }
 
         #endregion
 
         #region Properties
 
-        public string DisplayName => "Child view model";
+        public string DisplayName
+        {
+            get { return "Child view model"; }
+        }
 
         public string Parameter
         {
@@ -91,7 +95,10 @@ namespace Light.ViewModels
 
         #region Commands
 
-        public ICommand ApplyCommand => _applyCommand;
+        public ICommand ApplyCommand
+        {
+            get { return _applyCommand; }
+        }
 
         private void Apply()
         {
@@ -105,7 +112,10 @@ namespace Light.ViewModels
             return !HasErrors;
         }
 
-        public ICommand CloseCommand { get; }
+        public ICommand CloseCommand
+        {
+            get { return _closeCommand; }
+        }
 
         private void Close()
         {
@@ -134,7 +144,11 @@ namespace Light.ViewModels
             _applyCommand.RaiseCanExecuteChanged();
             if (hasErrorBefore != HasErrors)
             {
-                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Parameter)));
+                var handler = ErrorsChanged;
+                if (handler != null)
+                {
+                    handler(this, new DataErrorsChangedEventArgs("Parameter"));
+                }
             }
         }
 
@@ -167,7 +181,7 @@ namespace Light.ViewModels
 
         public IEnumerable GetErrors(string propertyName)
         {
-            if (propertyName != nameof(Parameter))
+            if (propertyName != "Parameter")
             {
                 return null;
             }
@@ -175,7 +189,10 @@ namespace Light.ViewModels
             return _parameterError;
         }
 
-        public bool HasErrors => !string.IsNullOrEmpty(_parameterError);
+        public bool HasErrors
+        {
+            get { return !string.IsNullOrEmpty(_parameterError); }
+        }
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 

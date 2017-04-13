@@ -17,6 +17,7 @@ namespace Mugen.ViewModels
         private readonly IMessagePresenter _messagePresenter;
         private bool _canOpenChildViewModel;
         private string _parameter;
+        private readonly ICommand _openChildViewModelCommand;
 
         #endregion
 
@@ -24,17 +25,20 @@ namespace Mugen.ViewModels
 
         public ParentViewModel(IMessagePresenter messagePresenter)
         {
-            Should.NotBeNull(messagePresenter, nameof(messagePresenter));
+            Should.NotBeNull(messagePresenter, "messagePresenter");
             _messagePresenter = messagePresenter;
             CanOpenChildViewModel = true;
-            OpenChildViewModelCommand = new RelayCommand(OpenChildViewModel, CanExecuteOpenChildViewModel, this);
+            _openChildViewModelCommand = new RelayCommand(OpenChildViewModel, CanExecuteOpenChildViewModel, this);
         }
 
         #endregion
         
         #region Properties
 
-        public string DisplayName => "Parent view model";
+        public string DisplayName
+        {
+            get { return "Parent view model"; }
+        }
 
         public bool CanOpenChildViewModel
         {
@@ -70,7 +74,10 @@ namespace Mugen.ViewModels
 
         #region Commands
 
-        public ICommand OpenChildViewModelCommand { get; }
+        public ICommand OpenChildViewModelCommand
+        {
+            get { return _openChildViewModelCommand; }
+        }
 
         private async void OpenChildViewModel()
         {

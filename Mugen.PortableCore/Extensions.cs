@@ -15,14 +15,19 @@ namespace Mugen
             IMessagePresenter messagePresenter, [CallerMemberName] string method = "")
         {
             //messagePresenter.ShowAsync(
-            Debug.WriteLine(
-                $"Source “{GetName(viewModel)}”, method “{method}”, from “{GetName(ctx.ViewModelFrom)}” to “{GetName(ctx.ViewModelTo)}”, mode “{ctx.NavigationMode}”",
+            Debug.WriteLine(string.Format("Source “{0}”, method “{1}”, from “{2}” to “{3}”, mode “{4}”",
+                    GetName(viewModel), method, GetName(ctx.ViewModelFrom), GetName(ctx.ViewModelTo), ctx.NavigationMode),
                 "Navigation trace");
         }
 
         private static string GetName(IViewModel viewModel)
         {
-            return (viewModel as IHasDisplayName)?.DisplayName ?? viewModel?.GetType().Name ?? "(null)";
+            var hasDisplayName = viewModel as IHasDisplayName;
+            if (viewModel == null || hasDisplayName == null)
+            {
+                return "(null)";
+            }
+            return hasDisplayName.DisplayName ?? viewModel.GetType().Name ?? "(null)";
         }
 
         #endregion

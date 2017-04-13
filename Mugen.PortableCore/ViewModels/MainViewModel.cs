@@ -17,6 +17,7 @@ namespace Mugen.ViewModels
 
         private readonly IMessagePresenter _messagePresenter;
         private int _counter;
+        private readonly ICommand _addNewTabCommand;
 
         #endregion
 
@@ -24,11 +25,11 @@ namespace Mugen.ViewModels
 
         public MainViewModel(IViewModelPresenter viewModelPresenter, IMessagePresenter messagePresenter)
         {
-            Should.NotBeNull(viewModelPresenter, nameof(viewModelPresenter));
-            Should.NotBeNull(messagePresenter, nameof(messagePresenter));
+            Should.NotBeNull(viewModelPresenter, "viewModelPresenter");
+            Should.NotBeNull(messagePresenter, "messagePresenter");
             _messagePresenter = messagePresenter;
 
-            AddNewTabCommand = new RelayCommand(AddNewTab);
+            _addNewTabCommand = new RelayCommand(AddNewTab);
 
             var presenter = new DynamicMultiViewModelPresenter(this);
             viewModelPresenter.DynamicPresenters.Add(presenter);
@@ -43,7 +44,10 @@ namespace Mugen.ViewModels
 
         #region Commands
 
-        public ICommand AddNewTabCommand { get; }
+        public ICommand AddNewTabCommand
+        {
+            get { return _addNewTabCommand; }
+        }
 
         private async void AddNewTab()
         {
@@ -59,7 +63,10 @@ namespace Mugen.ViewModels
 
         #region Properties
 
-        public string DisplayName => "Main view model";
+        public string DisplayName
+        {
+            get { return "Main view model"; }
+        }
 
         #endregion
 

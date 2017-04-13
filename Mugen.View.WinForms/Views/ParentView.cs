@@ -13,14 +13,14 @@ namespace Mugen.Views
 
             using (var set = new BindingSet<ParentViewModel>())
             {
-                set.Bind(checkBoxCanOpenChildWindow, nameof(checkBoxCanOpenChildWindow.Checked))
-                    .To(nameof(ParentViewModel.CanOpenChildViewModel))
+                set.Bind(checkBoxCanOpenChildWindow, () => v => v.Checked)
+                    .To(() => (vm, ctx) => vm.CanOpenChildViewModel)
                     .TwoWay();
-                set.Bind(textBoxParameter, nameof(checkBoxCanOpenChildWindow.Text))
-                    .To(nameof(ParentViewModel.Parameter))
+                set.Bind(textBoxParameter, () => v => v.Text)
+                    .To(() => (vm, ctx) => vm.Parameter)
                     .TwoWay();
-                set.Bind(buttonOpenChildWindow, nameof(buttonOpenChildWindow.Click))
-                    .To(nameof(ParentViewModel.OpenChildViewModelCommand));
+                set.Bind(buttonOpenChildWindow)
+                    .To(() => (vm, ctx) => vm.OpenChildViewModelCommand);
             }
         }
     }

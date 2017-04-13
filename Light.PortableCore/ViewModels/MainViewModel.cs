@@ -28,7 +28,10 @@ namespace Light.ViewModels
 
         #region Properties
 
-        public string DisplayName => "Main view model";
+        public string DisplayName
+        {
+            get { return "Main view model"; }
+        }
 
         public bool CanOpenChildViewModel
         {
@@ -65,13 +68,16 @@ namespace Light.ViewModels
 
         #region Commands
 
-        public ICommand OpenChildViewModelCommand => _openChildViewModelCommand;
+        public ICommand OpenChildViewModelCommand
+        {
+            get { return _openChildViewModelCommand; }
+        }
 
         private void OpenChildViewModel()
         {
             var childViewModel = ServiceLocator.Current.GetInstance<ChildViewModel>();
             childViewModel.Initialize(Parameter);
-            Messenger.Default.Send(new NotificationMessage(nameof(ChildViewModel)));
+            Messenger.Default.Send(new NotificationMessage(ViewModelLocator.ShowChildViewModelMessage));
         }
 
         private bool CanExecuteOpenChildViewModel()

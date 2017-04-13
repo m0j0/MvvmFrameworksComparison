@@ -17,6 +17,7 @@ namespace Mugen.ViewModels
         private readonly IMessagePresenter _messagePresenter;
         private string _parameter;
         private string _originalParameter;
+        private readonly ICommand _applyCommand;
 
         #endregion
 
@@ -24,16 +25,19 @@ namespace Mugen.ViewModels
 
         public ChildViewModel(IMessagePresenter messagePresenter)
         {
-            Should.NotBeNull(messagePresenter, nameof(messagePresenter));
+            Should.NotBeNull(messagePresenter, "messagePresenter");
             _messagePresenter = messagePresenter;
-            ApplyCommand = new RelayCommand(Apply, CanApply, this);
+            _applyCommand = new RelayCommand(Apply, CanApply, this);
         }
 
         #endregion
 
         #region Properties
 
-        public string DisplayName => "Child view model";
+        public string DisplayName
+        {
+            get { return "Child view model"; }
+        }
 
         public string Parameter
         {
@@ -57,7 +61,10 @@ namespace Mugen.ViewModels
 
         #region Commands
 
-        public ICommand ApplyCommand { get; }
+        public ICommand ApplyCommand
+        {
+            get { return _applyCommand; }
+        }
 
         private void Apply()
         {
@@ -83,7 +90,7 @@ namespace Mugen.ViewModels
 
         private void Validate()
         {
-            Validator.SetErrors(nameof(Parameter),
+            Validator.SetErrors<ChildViewModel>(() => vm => vm.Parameter,
                 _originalParameter == Parameter ||
                 string.IsNullOrEmpty(_originalParameter) && string.IsNullOrEmpty(Parameter)
                     ? "Change parameter before update"

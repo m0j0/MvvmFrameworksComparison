@@ -41,10 +41,15 @@ namespace Mugen
 
         #region Properties
 
-        public MainViewModel MainViewModel => GetOrAddViewModel(provider => provider.GetViewModel<MainViewModel>());
+        public MainViewModel MainViewModel
+        {
+            get { return GetOrAddViewModel(provider => provider.GetViewModel<MainViewModel>()); }
+        }
 
-        public CompositeViewModel CompositeViewModel => GetOrAddViewModel(provider => provider
-            .GetViewModel<CompositeViewModel>());
+        public CompositeViewModel CompositeViewModel
+        {
+            get { return GetOrAddViewModel(provider => provider.GetViewModel<CompositeViewModel>()); }
+        }
 
         #endregion
     }

@@ -11,25 +11,25 @@ namespace Mugen.Views
         {
             InitializeComponent();
 
-            using (var set = new BindingSet())
+            using (var set = new BindingSet<ChildViewModel>())
             {
-                set.Bind(this, nameof(Text))
-                    .To(nameof(ChildViewModel.DisplayName));
-                set.Bind(textBoxParameter, nameof(textBoxParameter.Text))
-                    .To(nameof(ChildViewModel.Parameter))
+                set.Bind(this, () => v => v.Text)
+                    .To(() => (vm, ctx) => vm.DisplayName);
+                set.Bind(textBoxParameter, () => v => v.Text)
+                    .To(() => (vm, ctx) => vm.Parameter)
                     .TwoWay()
                     .Validate();
-                set.Bind(buttonUpdateParameter, nameof(buttonUpdateParameter.Click))
-                    .To(nameof(ChildViewModel.ApplyCommand));
-                set.Bind(buttonClose, nameof(buttonClose.Click))
-                    .To(nameof(ChildViewModel.CloseCommand));
+                set.Bind(buttonUpdateParameter)
+                    .To(() => (vm, ctx) => vm.ApplyCommand);
+                set.Bind(buttonClose)
+                    .To(() => (vm, ctx) => vm.CloseCommand);
 
-                set.Bind(progressBarIsBusy, nameof(progressBarIsBusy.Visible))
-                    .To(nameof(ChildViewModel.IsBusy));
-                set.Bind(labelBusyMessage, nameof(labelBusyMessage.Visible))
-                    .To(nameof(ChildViewModel.IsBusy));
-                set.Bind(labelBusyMessage, nameof(labelBusyMessage.Text))
-                    .To(nameof(ChildViewModel.BusyMessage));
+                set.Bind(progressBarIsBusy, () => v => v.Visible)
+                    .To(() => (vm, ctx) => vm.IsBusy);
+                set.Bind(labelBusyMessage, () => v => v.Visible)
+                    .To(() => (vm, ctx) => vm.IsBusy);
+                set.Bind(labelBusyMessage, () => v => v.Text)
+                    .To(() => (vm, ctx) => vm.BusyMessage);
             }
         }
     }
