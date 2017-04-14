@@ -1,5 +1,6 @@
 ﻿using MugenMvvmToolkit;
 using MugenMvvmToolkit.Interfaces.Models;
+using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
 
 namespace Mugen.ViewModels
@@ -21,11 +22,12 @@ namespace Mugen.ViewModels
         public CompositeViewModel()
         {
             _firstNestedViewModel = GetViewModel<CompositeNestedViewModel>();
-            FirstNestedViewModel.DisplayName = "First nested view model";
-            _secondNestedViewModel = GetViewModel<CompositeNestedViewModel>();
-            SecondNestedViewModel.DisplayName = "Second nested view model";
-            _thirdNestedViewModel = GetViewModel<CompositeNestedViewModel>();
-            ThirdNestedViewModel.DisplayName = "Third nested view model";
+            _firstNestedViewModel.DisplayName = "First nested view model";
+
+            _secondNestedViewModel = GetViewModel(container => new CompositeNestedViewModel {DisplayName = "Second nested view model"});
+
+            _thirdNestedViewModel = new CompositeNestedViewModel {DisplayName = "Third nested view model"};
+            ViewModelProvider.InitializeViewModel(_thirdNestedViewModel, DataContext.Empty);
         }
 
         #endregion
