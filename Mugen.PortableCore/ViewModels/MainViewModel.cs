@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using MugenMvvmToolkit;
 using MugenMvvmToolkit.Infrastructure.Presenters;
@@ -14,8 +15,7 @@ namespace Mugen.ViewModels
     public class MainViewModel : MultiViewModel, INavigableViewModel, IHasDisplayName
     {
         #region Fields
-
-        private readonly IMessagePresenter _messagePresenter;
+        
         private int _counter;
         private readonly ICommand _addNewTabCommand;
 
@@ -26,8 +26,6 @@ namespace Mugen.ViewModels
         public MainViewModel(IViewModelPresenter viewModelPresenter, IMessagePresenter messagePresenter)
         {
             Should.NotBeNull(viewModelPresenter, "viewModelPresenter");
-            Should.NotBeNull(messagePresenter, "messagePresenter");
-            _messagePresenter = messagePresenter;
 
             _addNewTabCommand = new RelayCommand(AddNewTab);
 
@@ -55,7 +53,7 @@ namespace Mugen.ViewModels
             {
                 viewModel.Id = ++_counter;
                 await viewModel.ShowAsync(); // first way to add VM to MainViewModel ItemsSource
-                await _messagePresenter.ShowAsync(viewModel.DisplayName + " closed. Call from MainViewModel");
+                Debug.WriteLine(viewModel.DisplayName + " closed. Call from MainViewModel");
             }
         }
 
@@ -76,7 +74,8 @@ namespace Mugen.ViewModels
         {
             // second way to add VM to MainViewModel ItemsSource
             AddViewModel(GetViewModel<ParentViewModel>());
-            AddViewModel(GetViewModel(container => new CompositeViewModel {Id = ++_counter}));
+            AddViewModel(GetViewModel(
+                container => new CompositeViewModel(container.Get<IMessagePresenter>()) {Id = ++_counter}));
         }
 
         #endregion

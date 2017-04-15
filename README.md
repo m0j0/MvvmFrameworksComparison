@@ -5,7 +5,7 @@ Main goal is to compare popular MVVM frameworks by handling use cases of big ent
 * DI support
 * Tab navigation: add tab and handle it's closing
 * Dialog navigation: open modal window and get result of show operation
-* Page navigation
+* Page navigation: TODO
 * Initialization of child navigable view model (window, tab, page)
 * ICommand pattern implementation. CanExecuteChanged calling on view model property changed
 * Handling window closing with ability to cancel it and do long task
@@ -23,7 +23,7 @@ To compare frameworks, I created simple application:
     * Update parameter: close window and update parameter in parent view model. Should be enabled only if parameter changed. Parameter check box should show error
     * Close: close window without parameter updating
     * Should be confirmation of child window closing with long prosess emulating
-* Second tab is form with composite view model example: master view model with nested view models
+* Second tab is form with composite view model example: master view model with nested view models. Should be confirmation of form closing
 
 # Participants (in progress)
 - Caliburn.Micro ([Repository](https://github.com/Caliburn-Micro/Caliburn.Micro), [Stack Overflow](http://stackoverflow.com/questions/tagged/caliburn.micro))
