@@ -19,6 +19,8 @@ namespace Mugen.Views
                 set.Bind(textBoxParameter, () => v => v.Text)
                     .To(() => (vm, ctx) => vm.Parameter)
                     .TwoWay();
+                set.Bind(buttonClose)
+                    .To(() => (vm, ctx) => vm.CloseCommand);
                 set.Bind(buttonOpenChildWindow)
                     .To(() => (vm, ctx) => vm.OpenChildViewModelCommand);
             }

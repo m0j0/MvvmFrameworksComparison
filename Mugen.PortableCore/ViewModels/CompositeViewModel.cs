@@ -1,5 +1,7 @@
-﻿using MugenMvvmToolkit;
+﻿using System.Threading.Tasks;
+using MugenMvvmToolkit;
 using MugenMvvmToolkit.Interfaces.Models;
+using MugenMvvmToolkit.Interfaces.Presenters;
 using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
 
@@ -8,7 +10,8 @@ namespace Mugen.ViewModels
     public class CompositeViewModel : CloseableViewModel, IHasDisplayName
     {
         #region Fields
-
+        
+        private readonly IMessagePresenter _messagePresenter;
         private readonly CompositeNestedViewModel _firstNestedViewModel;
         private readonly CompositeNestedViewModel _secondNestedViewModel;
         private readonly CompositeNestedViewModel _thirdNestedViewModel;
@@ -19,8 +22,11 @@ namespace Mugen.ViewModels
 
         #region Constructors
 
-        public CompositeViewModel()
+        public CompositeViewModel(IMessagePresenter messagePresenter)
         {
+            Should.NotBeNull(messagePresenter, "messagePresenter");
+            _messagePresenter = messagePresenter;
+
             _firstNestedViewModel = GetViewModel<CompositeNestedViewModel>();
             _firstNestedViewModel.DisplayName = "First nested view model";
 
@@ -68,6 +74,17 @@ namespace Mugen.ViewModels
         public CompositeNestedViewModel ThirdNestedViewModel
         {
             get { return _thirdNestedViewModel; }
+        }
+
+        #endregion
+
+        #region Methods
+
+        protected override Task<bool> OnClosing(object parameter)
+        {
+            return _messagePresenter
+                .ShowAsync("Close tab?", "Question", MessageButton.YesNo)
+                .ContinueWith(task => task.Result == MessageResult.Yes);
         }
 
         #endregion
