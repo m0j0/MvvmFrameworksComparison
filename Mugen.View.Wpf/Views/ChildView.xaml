@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Mugen.ViewModels;assembly=Mugen.PortableCore"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:ChildViewModel}"
-        Title="{Binding DisplayName}" Height="300" Width="300">
+        Title="{Binding DisplayName}" Height="300" Width="300"
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <StackPanel VerticalAlignment="Center"
                     View.Visible="{Binding Path=IsBusy}">

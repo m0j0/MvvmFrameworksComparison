@@ -31,9 +31,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxParameter = new System.Windows.Forms.TextBox();
-            this.buttonUpdateParameter = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.buttonUpdateParameter = new System.Windows.Forms.Button();
             this.progressBarIsBusy = new System.Windows.Forms.ProgressBar();
             this.labelBusyMessage = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -79,24 +79,6 @@
             this.textBoxParameter.Size = new System.Drawing.Size(349, 20);
             this.textBoxParameter.TabIndex = 1;
             // 
-            // buttonUpdateParameter
-            // 
-            this.buttonUpdateParameter.Location = new System.Drawing.Point(154, 3);
-            this.buttonUpdateParameter.Name = "buttonUpdateParameter";
-            this.buttonUpdateParameter.Size = new System.Drawing.Size(100, 23);
-            this.buttonUpdateParameter.TabIndex = 2;
-            this.buttonUpdateParameter.Text = "Update parameter";
-            this.buttonUpdateParameter.UseVisualStyleBackColor = true;
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Location = new System.Drawing.Point(260, 3);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(100, 23);
-            this.buttonClose.TabIndex = 3;
-            this.buttonClose.Text = "Close";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.buttonClose);
@@ -108,6 +90,24 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(363, 31);
             this.flowLayoutPanel1.TabIndex = 3;
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Location = new System.Drawing.Point(260, 3);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(100, 23);
+            this.buttonClose.TabIndex = 3;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            // 
+            // buttonUpdateParameter
+            // 
+            this.buttonUpdateParameter.Location = new System.Drawing.Point(154, 3);
+            this.buttonUpdateParameter.Name = "buttonUpdateParameter";
+            this.buttonUpdateParameter.Size = new System.Drawing.Size(100, 23);
+            this.buttonUpdateParameter.TabIndex = 2;
+            this.buttonUpdateParameter.Text = "Update parameter";
+            this.buttonUpdateParameter.UseVisualStyleBackColor = true;
             // 
             // progressBarIsBusy
             // 
@@ -135,6 +135,7 @@
             this.ClientSize = new System.Drawing.Size(464, 226);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ChildView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ChildView";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

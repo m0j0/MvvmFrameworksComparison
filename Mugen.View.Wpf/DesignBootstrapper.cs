@@ -34,21 +34,32 @@ namespace Mugen
 
         protected override IIocContainer CreateIocContainer()
         {
-            return new AutofacContainer();
+            return new MugenContainer();
+        }
+
+        private static DesignBootstrapper CreateInstance()
+        {
+            if (!ServiceProvider.IsDesignMode)
+            {
+                return null;
+            }
+            var boot = new DesignBootstrapper();
+            boot.Initialize();
+            return boot;
         }
 
         #endregion
 
         #region Properties
 
-        public MainViewModel MainViewModel
+        public static MainViewModel MainViewModel
         {
-            get { return GetOrAddViewModel(provider => provider.GetViewModel<MainViewModel>()); }
+            get { return CreateInstance().GetDesignViewModel(provider => provider.GetViewModel<MainViewModel>()); }
         }
 
-        public CompositeViewModel CompositeViewModel
+        public static CompositeViewModel CompositeViewModel
         {
-            get { return GetOrAddViewModel(provider => provider.GetViewModel<CompositeViewModel>()); }
+            get { return CreateInstance().GetDesignViewModel(provider => provider.GetViewModel<CompositeViewModel>()); }
         }
 
         #endregion

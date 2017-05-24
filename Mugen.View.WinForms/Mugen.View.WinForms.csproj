@@ -34,20 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.1.0\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="MugenMvvmToolkit, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MugenMvvmToolkit.6.5.0\lib\net45\MugenMvvmToolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MugenMvvmToolkit, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MugenMvvmToolkit.6.0.0\lib\net45\MugenMvvmToolkit.dll</HintPath>
+    <Reference Include="MugenMvvmToolkit.Binding, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MugenMvvmToolkit.Binding.6.5.0\lib\net45\MugenMvvmToolkit.Binding.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MugenMvvmToolkit.AutofacContainer, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MugenMvvmToolkit.AutofacContainer.6.0.0\lib\net40\MugenMvvmToolkit.AutofacContainer.dll</HintPath>
-    </Reference>
-    <Reference Include="MugenMvvmToolkit.Binding, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MugenMvvmToolkit.WinForms.6.0.0\lib\net45\MugenMvvmToolkit.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="MugenMvvmToolkit.WinForms, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MugenMvvmToolkit.WinForms.6.0.0\lib\net45\MugenMvvmToolkit.WinForms.dll</HintPath>
+    <Reference Include="MugenMvvmToolkit.WinForms, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MugenMvvmToolkit.WinForms.6.5.0\lib\net45\MugenMvvmToolkit.WinForms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -120,7 +117,9 @@
     <EmbeddedResource Include="Views\ParentView.resx">
       <DependentUpon>ParentView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

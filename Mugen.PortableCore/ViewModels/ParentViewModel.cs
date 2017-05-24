@@ -108,7 +108,7 @@ namespace Mugen.ViewModels
             this.TraceNavigation(context, _messagePresenter);
         }
 
-        Task<bool> INavigableViewModel.OnNavigatingFrom(INavigationContext context)
+        Task<bool> INavigableViewModel.OnNavigatingFromAsync(INavigationContext context)
         {
             this.TraceNavigation(context, _messagePresenter);
             return Empty.TrueTask;

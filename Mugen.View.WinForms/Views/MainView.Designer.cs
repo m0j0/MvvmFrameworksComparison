@@ -74,6 +74,7 @@
             this.ClientSize = new System.Drawing.Size(533, 369);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainView";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

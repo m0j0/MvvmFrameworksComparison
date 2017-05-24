@@ -10,7 +10,7 @@ using MugenMvvmToolkit.ViewModels;
 
 namespace Mugen.ViewModels
 {
-    public class ChildViewModel : ValidatableViewModel, IHasDisplayName, IHasOperationResult, INavigableViewModel
+    public class ChildViewModel : ValidatableViewModel, IHasDisplayName, IHasResultViewModel<bool>, INavigableViewModel
     {
         #region Fields
 
@@ -55,7 +55,7 @@ namespace Mugen.ViewModels
             }
         }
 
-        public bool? OperationResult { get; private set; }
+        public bool Result { get; private set; }
 
         #endregion
 
@@ -68,8 +68,8 @@ namespace Mugen.ViewModels
 
         private void Apply()
         {
-            OperationResult = true;
-            CloseAsync();
+            Result = true;
+            this.CloseAsync();
         }
 
         private bool CanApply()
@@ -96,8 +96,8 @@ namespace Mugen.ViewModels
                     ? "Change parameter before update"
                     : null);
         }
-
-        protected override async Task<bool> OnClosing(object parameter)
+        
+        protected override async Task<bool> OnClosing(IDataContext context)
         {
             if (await _messagePresenter.ShowAsync("Are you sure you want to close window?", "Question",
                     MessageButton.YesNo) == MessageResult.Yes)
@@ -120,7 +120,7 @@ namespace Mugen.ViewModels
             this.TraceNavigation(context, _messagePresenter);
         }
 
-        Task<bool> INavigableViewModel.OnNavigatingFrom(INavigationContext context)
+        Task<bool> INavigableViewModel.OnNavigatingFromAsync(INavigationContext context)
         {
             this.TraceNavigation(context, _messagePresenter);
             return Empty.TrueTask;

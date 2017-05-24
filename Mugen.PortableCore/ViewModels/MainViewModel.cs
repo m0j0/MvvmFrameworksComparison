@@ -11,7 +11,7 @@ using MugenMvvmToolkit.ViewModels;
 
 namespace Mugen.ViewModels
 {
-    public class MainViewModel : MultiViewModel, INavigableViewModel, IHasDisplayName
+    public class MainViewModel : MultiViewModel<IViewModel>, INavigableViewModel, IHasDisplayName
     {
         #region Fields
 
@@ -91,7 +91,7 @@ namespace Mugen.ViewModels
             InitializeViewModels();
         }
 
-        Task<bool> INavigableViewModel.OnNavigatingFrom(INavigationContext context)
+        Task<bool> INavigableViewModel.OnNavigatingFromAsync(INavigationContext context)
         {
             return Empty.TrueTask;
         }

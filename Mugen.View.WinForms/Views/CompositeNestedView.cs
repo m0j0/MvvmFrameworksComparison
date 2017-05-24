@@ -11,12 +11,7 @@ namespace Mugen.Views
         public CompositeNestedView()
         {
             InitializeComponent();
-
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-            {
-                return;
-            }
-
+            
             using (var set = new BindingSet<CompositeNestedViewModel>())
             {
                 set.Bind(label)

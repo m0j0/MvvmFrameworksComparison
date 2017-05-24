@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DataContext="{Binding Source={StaticResource DesignBootstrapper}, Path=MainViewModel}"
-        Title="{Binding DisplayName}" Height="300" Width="500">
+        xmlns:prototype="clr-namespace:Mugen"
+        mc:Ignorable="d" d:DataContext="{x:Static prototype:DesignBootstrapper.MainViewModel}"
+        Title="{Binding DisplayName}" Height="300" Width="500"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

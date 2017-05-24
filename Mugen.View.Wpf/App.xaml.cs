@@ -11,7 +11,7 @@ namespace Mugen
 
         public App()
         {
-            new Bootstrapper<MainViewModel>(this, new AutofacContainer());
+            new Bootstrapper<MainViewModel>(this, new MugenContainer());
         }
 
         #endregion

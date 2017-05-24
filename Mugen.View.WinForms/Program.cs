@@ -14,7 +14,7 @@ namespace Mugen
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var bootstrapper = new Bootstrapper<MainViewModel>(new AutofacContainer());
+            var bootstrapper = new Bootstrapper<MainViewModel>(new MugenContainer());
             bootstrapper.Start();
         }
     }
