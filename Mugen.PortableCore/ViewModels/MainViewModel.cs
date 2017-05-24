@@ -23,7 +23,7 @@ namespace Mugen.ViewModels
 
         #region Constructors
 
-        public MainViewModel(IViewModelPresenter viewModelPresenter, IMessagePresenter messagePresenter)
+        public MainViewModel(IViewModelPresenter viewModelPresenter)
         {
             Should.NotBeNull(viewModelPresenter, "viewModelPresenter");
 

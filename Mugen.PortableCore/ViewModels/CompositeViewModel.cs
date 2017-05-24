@@ -80,7 +80,7 @@ namespace Mugen.ViewModels
 
         #region Methods
 
-        protected override Task<bool> OnClosing(object parameter)
+        protected override Task<bool> OnClosing(IDataContext context)
         {
             return _messagePresenter
                 .ShowAsync("Close tab?", "Question", MessageButton.YesNo)
